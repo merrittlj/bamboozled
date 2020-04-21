@@ -125,12 +125,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80e36834ba94904588012c185f0baa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradePanel: {fileID: 3685007805005230488, guid: 6064f33603b8da34aae47bccfa4539ee,
+    type: 3}
+  offset: {x: -6.88, y: 15.71, z: -30}
   endWaypoint: {fileID: 0}
   waypoint: {fileID: 5872397226297253412, guid: 690c3c440bdeb474e88d9e8e5f63b036,
     type: 3}
   waypointParent: {fileID: 6159694603321768039, guid: 1024d804b122e2b49af312539b4108b4,
     type: 3}
-  thisOb: {fileID: 0}
   robotFirepoint1: {fileID: 0}
   robotFirepoint2: {fileID: 0}
   range: 15

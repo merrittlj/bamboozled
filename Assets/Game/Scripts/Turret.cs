@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Turret : MonoBehaviour
 {
@@ -12,11 +13,28 @@ public class Turret : MonoBehaviour
     Shop shop;
     Upgrade upg;
 
+    Ray ray;
+    RaycastHit hit;
+    private int isTier1 = 1;
+
+    [Header("Upgrade Panel stuff")]
+    private GameObject UpgradePanelHolder;
+    public GameObject upgradePanel;
+    public Vector3 offset;
+    private GameObject thisPanel;
+
+    private GameObject thisPanelTD1;
+    private GameObject thisPanelTD2;
+    private GameObject thisPanelTO1;
+    private GameObject thisPanelTO2;
+
+    List<GameObject> uplist = new List<GameObject>();
+    private GameObject curOb;
+
     [Header("Waypoint stuff")]
     public GameObject endWaypoint;
     public GameObject waypoint;
     public GameObject waypointParent;
-    public GameObject thisOb;
     private Vector3 endWaypointPos;
 
 
@@ -49,11 +67,10 @@ public class Turret : MonoBehaviour
     void Start()
      {
 
-
-        thisOb = this.gameObject;
         waypoint = GameObject.Find("Waypoints/Waypoint");
         waypointParent = GameObject.Find("Waypoints");
         endWaypoint = GameObject.Find("EndWaypoint");
+        UpgradePanelHolder = GameObject.Find("UpgradePanelHolder");
 
         endWaypointPos = endWaypoint.transform.position;
 
@@ -61,28 +78,87 @@ public class Turret : MonoBehaviour
 
         endWaypoint.transform.SetParent(transform);
 
-        Vector3 desiredPos = thisOb.gameObject.transform.position + new Vector3(0, 3, 0);
+        Vector3 desiredWaypointPos = gameObject.transform.position + new Vector3(0, 3, 0);
 
-        GameObject wayPoint = (GameObject)Instantiate(waypoint, desiredPos, thisOb.gameObject.transform.rotation);
+        GameObject wayPoint = (GameObject)Instantiate(waypoint, desiredWaypointPos, Quaternion.identity);
         wayPoint.transform.SetParent(waypointParent.transform);
         endWaypoint.transform.SetParent(waypointParent.transform);
         wayp.CheckChild();
 
-     }
+        Vector3 desiredUpgradePanelPos = gameObject.transform.position + offset;
+        GameObject ThisupgradePanel = (GameObject)Instantiate(upgradePanel, desiredUpgradePanelPos, Quaternion.identity);
+
+        thisPanel = ThisupgradePanel;
+
+        thisPanelTD1 = thisPanel.transform.Find("UpgradeTurretTierOffense1").gameObject;
+        thisPanelTD2 = thisPanel.transform.Find("UpgradeTurretTierOffense2").gameObject;
+        thisPanelTO1 = thisPanel.transform.Find("UpgradeTurretTierDefense1").gameObject;
+        thisPanelTO2 = thisPanel.transform.Find("UpgradeTurretTierDefense2").gameObject;
+
+    }
     void Update()
     {
 
-            if (target == null)
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit)) {
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (hit.transform.tag == "TierOffense")
+                {
+
+                    thisPanelTD2.SetActive(false);
+                    thisPanelTD1.SetActive(false);
+
+                    if (isTier1 == 1)
+                    {
+
+                        if (shop.balance > 100)
+                        {
+
+                            shop.balance -= 100;
+                            thisPanelTO1.SetActive(false);
+                            thisPanelTO2.SetActive(true);
+                            isTier1 = 2;
+                            return;
+
+                        }
+
+                        return;
+
+                    }
+
+                    if (isTier1 == 2)
+                    {
+
+                        if (shop.balance > 500)
+                        {
+                            thisPanelTO2.SetActive(false);
+                            shop.balance -= 500;
+                            return;
+                        }
+
+                        return;
+
+                    }
+
+                }
+
+                if (hit.transform.tag == "TierDefense")
+                {
+
+                    thisPanelTO2.SetActive(false);
+                    thisPanelTO1.SetActive(false);
+
+                }
+            }
+
+        }
+
+        if (target == null)
             {
 
                 return;
-
-            }
-
-            if (upg.upgradeValue == "TO1")
-            {
-
-                range = 1000000000000000000;
 
             }
 

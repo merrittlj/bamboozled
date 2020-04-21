@@ -113,9 +113,11 @@ public class Upgrade : MonoBehaviour
                             turretTiers.tiero2.SetActive(true);
                             isTier1 = 2;
                             upgradeValue = "TO1";
+                            Debug.Log("f");
                             return;
 
                         }
+                        return;
 
                     }
 
@@ -128,6 +130,7 @@ public class Upgrade : MonoBehaviour
                             shop.balance -= 500;
                             return;
                         }
+                        return;
 
                     }
 
