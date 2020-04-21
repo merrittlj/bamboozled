@@ -35,6 +35,10 @@ public class Turret : MonoBehaviour
     public float turnSpeed = 10f;
     public Transform firePoint;
 
+    private GameObject upgradeBar;
+
+    public GameObject thisUpGBAR;
+
     private void Awake()
     {
 
@@ -55,6 +59,8 @@ public class Turret : MonoBehaviour
         waypointParent = GameObject.Find("Waypoints");
         endWaypoint = GameObject.Find("EndWaypoint");
 
+        upgradeBar = GameObject.Find("UpgradeBar");
+
         endWaypointPos = endWaypoint.transform.position;
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -68,6 +74,10 @@ public class Turret : MonoBehaviour
         endWaypoint.transform.SetParent(waypointParent.transform);
         wayp.CheckChild();
 
+        GameObject thisUpbar = (GameObject)Instantiate(upgradeBar, upgradeBar.transform.position, Quaternion.identity);
+        thisUpGBAR = thisUpbar;
+        upgradeBar.transform.position = new Vector3(1000, 1000, 1000);
+
      }
     void Update()
     {
@@ -76,13 +86,6 @@ public class Turret : MonoBehaviour
             {
 
                 return;
-
-            }
-
-            if (upg.upgradeValue == "TO1")
-            {
-
-                range = 1000000000000000000;
 
             }
 

@@ -10,6 +10,11 @@ public class Upgrade : MonoBehaviour
     [Header("TierBlueprints")]
     public TierBlueprint turretTiers;
 
+    private GameObject td1;
+    private GameObject td2;
+    private GameObject to1;
+    private GameObject to2;
+
     private int isTier1 = 1;
 
     public static Upgrade instance;
@@ -18,6 +23,10 @@ public class Upgrade : MonoBehaviour
     Turret turret;
 
     public string upgradeValue;
+
+    private GameObject hitObTur;
+
+    GameObject cur;
 
     void Start()
     {
@@ -55,28 +64,20 @@ public class Upgrade : MonoBehaviour
                 {
 
                     turretTiers.UpgradeBar.SetActive(true);
-                   /* if (rayOb = gameObject)
-                    {
-
-                        GameObject[] tiero = GameObject.FindGameObjectsWithTag("TierOffense");
-                        GameObject[] tierd = GameObject.FindGameObjectsWithTag("TierDefense");
-
-                        foreach(GameObject tieroo in tiero)
-                        {
-
-                            tieroo.SetActive(true);
-
-                        }
-                        foreach (GameObject tierdd in tierd)
-                        {
-
-                            tierdd.SetActive(true);
-
-                        }
-
-                    }*/
 
                 }
+
+            }
+
+            if (Input.GetKey(KeyCode.L))
+            {
+
+                hit.transform.gameObject.GetComponent<Turret>().thisUpGBAR.name = "curTurUp";
+                cur = GameObject.Find("curTurUp");
+                to1 = cur.transform.Find("UpgradeTurretTierOffense1").gameObject;
+                to2 = cur.transform.Find("UpgradeTurretTierOffense2").gameObject;
+                td1 = cur.transform.Find("UpgradeTurretTierDefense1").gameObject;
+                td2 = cur.transform.Find("UpgradeTurretTierDefense2").gameObject;
 
             }
 
@@ -99,8 +100,8 @@ public class Upgrade : MonoBehaviour
                 if (hit.transform.tag == "TierOffense")
                 {
 
-                    turretTiers.tierd2.SetActive(false);
-                    turretTiers.tierd1.SetActive(false);
+                    td2.SetActive(false);
+                    td1.SetActive(false);
 
                     if (isTier1 == 1)
                     {
@@ -109,8 +110,8 @@ public class Upgrade : MonoBehaviour
                         {
 
                             shop.balance -= 100;
-                            turretTiers.tiero1.SetActive(false);
-                            turretTiers.tiero2.SetActive(true);
+                            to1.SetActive(false);
+                            to2.SetActive(true);
                             isTier1 = 2;
                             upgradeValue = "TO1";
                             return;
@@ -124,7 +125,7 @@ public class Upgrade : MonoBehaviour
 
                         if (shop.balance > 500)
                         {
-                            turretTiers.tiero2.SetActive(false);
+                            to2.SetActive(false);
                             shop.balance -= 500;
                             return;
                         }
@@ -135,8 +136,8 @@ public class Upgrade : MonoBehaviour
                 if (hit.transform.tag == "TierDefense")
                 {
 
-                    turretTiers.tiero2.SetActive(false);
-                    turretTiers.tiero1.SetActive(false);
+                    to2.SetActive(false);
+                    to1.SetActive(false);
 
                 }
 
