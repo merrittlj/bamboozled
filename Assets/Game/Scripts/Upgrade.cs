@@ -28,6 +28,9 @@ public class Upgrade : MonoBehaviour
 
     GameObject cur;
 
+    public static List<GameObject> curlist = new List<GameObject>();
+    public static List<GameObject> notcurlist = new List<GameObject>();
+
     void Start()
     {
 
@@ -97,7 +100,7 @@ public class Upgrade : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
 
-                if (hit.transform.tag == "TierOffense")
+                if (hit.transform.gameObject == to1 || hit.transform.gameObject == to2)
                 {
 
                     td2.SetActive(false);
@@ -133,7 +136,7 @@ public class Upgrade : MonoBehaviour
                     }
 
                 }
-                if (hit.transform.tag == "TierDefense")
+                if (hit.transform.gameObject == td1 || hit.transform.gameObject == td2)
                 {
 
                     to2.SetActive(false);

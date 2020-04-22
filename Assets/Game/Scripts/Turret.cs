@@ -39,6 +39,8 @@ public class Turret : MonoBehaviour
 
     public GameObject thisUpGBAR;
 
+    public Vector3 offset;
+
     private void Awake()
     {
 
@@ -74,7 +76,8 @@ public class Turret : MonoBehaviour
         endWaypoint.transform.SetParent(waypointParent.transform);
         wayp.CheckChild();
 
-        GameObject thisUpbar = (GameObject)Instantiate(upgradeBar, upgradeBar.transform.position, Quaternion.identity);
+        Vector3 desiredPosTurUp = gameObject.transform.position + offset;
+        GameObject thisUpbar = (GameObject)Instantiate(upgradeBar, desiredPosTurUp, Quaternion.identity);
         thisUpGBAR = thisUpbar;
         upgradeBar.transform.position = new Vector3(1000, 1000, 1000);
 
