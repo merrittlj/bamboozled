@@ -85,12 +85,28 @@ public class Turret : MonoBehaviour
     void Update()
     {
 
+        Debug.Log("F");
+
             if (target == null)
             {
 
                 return;
 
             }
+            if (upg.curtur != gameObject)
+            {
+
+                thisUpGBAR.SetActive(false);
+
+
+            }
+        if (upg.curtur == gameObject)
+        {
+
+            thisUpGBAR.SetActive(true);
+
+
+        }
 
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);

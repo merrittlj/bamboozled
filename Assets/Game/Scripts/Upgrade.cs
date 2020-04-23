@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
+
     Ray ray;
     RaycastHit hit;
 
@@ -30,6 +31,7 @@ public class Upgrade : MonoBehaviour
 
     public static List<GameObject> curlist = new List<GameObject>();
     public static List<GameObject> notcurlist = new List<GameObject>();
+    public GameObject curtur;
 
     void Start()
     {
@@ -72,18 +74,6 @@ public class Upgrade : MonoBehaviour
 
             }
 
-            if (Input.GetKey(KeyCode.L))
-            {
-
-                hit.transform.gameObject.GetComponent<Turret>().thisUpGBAR.name = "curTurUp";
-                cur = GameObject.Find("curTurUp");
-                to1 = cur.transform.Find("UpgradeTurretTierOffense1").gameObject;
-                to2 = cur.transform.Find("UpgradeTurretTierOffense2").gameObject;
-                td1 = cur.transform.Find("UpgradeTurretTierDefense1").gameObject;
-                td2 = cur.transform.Find("UpgradeTurretTierDefense2").gameObject;
-
-            }
-
             if (hit.transform.tag != "Panda" && hit.transform.tag != "UpgradeBar" && hit.transform.tag != "TierOffense" && hit.transform.tag != "TierDefense")
             {
 
@@ -94,6 +84,19 @@ public class Upgrade : MonoBehaviour
                     return;
 
                 }
+
+            }
+
+            if (Input.GetKey(KeyCode.L))
+            {
+
+                hit.transform.gameObject.GetComponent<Turret>().thisUpGBAR.name = "curTurUp";
+                curtur = hit.transform.gameObject;
+                cur = GameObject.Find("curTurUp");
+                to1 = cur.transform.Find("UpgradeTurretTierOffense1").gameObject;
+                to2 = cur.transform.Find("UpgradeTurretTierOffense2").gameObject;
+                td1 = cur.transform.Find("UpgradeTurretTierDefense1").gameObject;
+                td2 = cur.transform.Find("UpgradeTurretTierDefense2").gameObject;
 
             }
 
@@ -113,6 +116,7 @@ public class Upgrade : MonoBehaviour
                         {
 
                             shop.balance -= 100;
+                            curtur.GetComponent<Turret>().range += 10000000000;
                             to1.SetActive(false);
                             to2.SetActive(true);
                             isTier1 = 2;
