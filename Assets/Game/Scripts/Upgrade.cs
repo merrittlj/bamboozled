@@ -22,6 +22,7 @@ public class Upgrade : MonoBehaviour
 
     Shop shop;
     Turret turret;
+    BuildManager build;
 
     public string upgradeValue;
 
@@ -40,13 +41,20 @@ public class Upgrade : MonoBehaviour
 
         shop = Shop.instance;
         turret = Turret.instance;
-
-        turretTiers.UpgradeBar.SetActive(false);
+        build = BuildManager.instance;
 
     }
 
     void Update()
     {
+
+        if (build.created == true)
+        {
+            Debug.Log("a");
+            cur = null;
+            curtur = null;
+
+        }
 
         if (isTier1 == 1)
         {
@@ -60,43 +68,16 @@ public class Upgrade : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
 
-            //rayOb = hit.transform.gameObject;
-
-            if (hit.transform.tag == "Panda")
-            {
-
-                if (Input.GetMouseButton(0))
-                {
-
-                    turretTiers.UpgradeBar.SetActive(true);
-
-                }
-
-            }
-
-            if (hit.transform.tag != "Panda" && hit.transform.tag != "UpgradeBar" && hit.transform.tag != "TierOffense" && hit.transform.tag != "TierDefense")
-            {
-
-                if (Input.GetMouseButton(0))
-                {
-
-                    turretTiers.UpgradeBar.SetActive(false);
-                    return;
-
-                }
-
-            }
-
             if (Input.GetKey(KeyCode.L))
             {
 
-                hit.transform.gameObject.GetComponent<Turret>().thisUpGBAR.name = "curTurUp";
-                curtur = hit.transform.gameObject;
-                cur = GameObject.Find("curTurUp");
+                cur = hit.transform.gameObject.GetComponent<Turret>().thisUpGBAR;
+                curtur = hit.transform.gameObject.GetComponent<Turret>().gameObject;
                 to1 = cur.transform.Find("UpgradeTurretTierOffense1").gameObject;
                 to2 = cur.transform.Find("UpgradeTurretTierOffense2").gameObject;
                 td1 = cur.transform.Find("UpgradeTurretTierDefense1").gameObject;
                 td2 = cur.transform.Find("UpgradeTurretTierDefense2").gameObject;
+                Debug.Log(":");
 
             }
 
@@ -115,8 +96,8 @@ public class Upgrade : MonoBehaviour
                         if (shop.balance > 100)
                         {
 
-                            shop.balance -= 100;
                             curtur.GetComponent<Turret>().range += 10000000000;
+                            shop.balance -= 100;
                             to1.SetActive(false);
                             to2.SetActive(true);
                             isTier1 = 2;

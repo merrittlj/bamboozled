@@ -139,6 +139,8 @@ MonoBehaviour:
   PartToRotate: {fileID: 8380820288255836474}
   turnSpeed: 10
   firePoint: {fileID: 8327480142965867478}
+  upgradeBar: {fileID: 5505082307173756544, guid: 6064f33603b8da34aae47bccfa4539ee,
+    type: 3}
   thisUpGBAR: {fileID: 0}
   offset: {x: 0, y: 9, z: -25}
 --- !u!65 &2589643915432292120

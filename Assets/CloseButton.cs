@@ -5,12 +5,14 @@ using UnityEngine;
 public class CloseButton : MonoBehaviour
 {
 
+    Turret turret;
+
     public GameObject upgradeBar;
 
     private void Start()
     {
 
-        upgradeBar.SetActive(true);
+        turret = Turret.instance;
 
     }
 
@@ -18,6 +20,7 @@ public class CloseButton : MonoBehaviour
     {
 
         upgradeBar.SetActive(false);
+        turret.isclick = 0;
 
     }
 

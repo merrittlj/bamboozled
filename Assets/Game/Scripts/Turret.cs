@@ -19,6 +19,14 @@ public class Turret : MonoBehaviour
     public GameObject thisOb;
     private Vector3 endWaypointPos;
 
+    private int isTier1 = 1;
+    private GameObject td1;
+    private GameObject td2;
+    private GameObject to1;
+    private GameObject to2;
+    Ray ray;
+    RaycastHit hit;
+
 
     [Header("Special Firepoints")]
     public Transform robotFirepoint1;
@@ -35,9 +43,13 @@ public class Turret : MonoBehaviour
     public float turnSpeed = 10f;
     public Transform firePoint;
 
-    private GameObject upgradeBar;
+    [HideInInspector]
+    public GameObject upgradeBar;
 
+    [HideInInspector]
     public GameObject thisUpGBAR;
+
+    public int isclick;
 
     public Vector3 offset;
 
@@ -50,6 +62,10 @@ public class Turret : MonoBehaviour
         shop = Shop.instance;
         upg = Upgrade.instance;
 
+        Vector3 desiredPosTurUp = gameObject.transform.position + offset;
+        thisUpGBAR = (GameObject)Instantiate(upgradeBar, desiredPosTurUp, Quaternion.identity);
+        thisUpGBAR.SetActive(false);
+
     }
 
     void Start()
@@ -60,8 +76,6 @@ public class Turret : MonoBehaviour
         waypoint = GameObject.Find("Waypoints/Waypoint");
         waypointParent = GameObject.Find("Waypoints");
         endWaypoint = GameObject.Find("EndWaypoint");
-
-        upgradeBar = GameObject.Find("UpgradeBar");
 
         endWaypointPos = endWaypoint.transform.position;
 
@@ -76,38 +90,79 @@ public class Turret : MonoBehaviour
         endWaypoint.transform.SetParent(waypointParent.transform);
         wayp.CheckChild();
 
-        Vector3 desiredPosTurUp = gameObject.transform.position + offset;
-        GameObject thisUpbar = (GameObject)Instantiate(upgradeBar, desiredPosTurUp, Quaternion.identity);
-        thisUpGBAR = thisUpbar;
-        upgradeBar.transform.position = new Vector3(1000, 1000, 1000);
+        to1 = thisUpGBAR.transform.Find("UpgradeTurretTierOffense1").gameObject;
+        to2 = thisUpGBAR.transform.Find("UpgradeTurretTierOffense2").gameObject;
+        td1 = thisUpGBAR.transform.Find("UpgradeTurretTierDefense1").gameObject;
+        td2 = thisUpGBAR.transform.Find("UpgradeTurretTierDefense2").gameObject;
 
-     }
+    }
     void Update()
     {
+        if (isclick == 1)
+        {
 
-        Debug.Log("F");
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
 
-            if (target == null)
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    if (hit.transform.gameObject == to1 || hit.transform.gameObject == to2)
+                    {
+
+                        td2.SetActive(false);
+                        td1.SetActive(false);
+
+                        if (isTier1 == 1)
+                        {
+
+                            if (shop.balance > 100)
+                            {
+
+                                range += 100000;
+                                fireRate -= 1000000000000;
+                                shop.balance -= 100;
+                                to1.SetActive(false);
+                                to2.SetActive(true);
+                                isTier1 = 2;
+                                return;
+
+                            }
+
+                        }
+
+                        if (isTier1 == 2)
+                        {
+
+                            if (shop.balance > 500)
+                            {
+                                to2.SetActive(false);
+                                shop.balance -= 500;
+                                return;
+                            }
+
+                        }
+
+                    }
+                    if (hit.transform.gameObject == td1 || hit.transform.gameObject == td2)
+                    {
+
+                        to2.SetActive(false);
+                        to1.SetActive(false);
+
+                    }
+
+                }
+
+            }
+        }
+        if (target == null)
             {
 
                 return;
 
             }
-            if (upg.curtur != gameObject)
-            {
-
-                thisUpGBAR.SetActive(false);
-
-
-            }
-        if (upg.curtur == gameObject)
-        {
-
-            thisUpGBAR.SetActive(true);
-
-
-        }
-
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(PartToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
@@ -227,6 +282,15 @@ public class Turret : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+
+    }
+
+    private void OnMouseDown()
+    {
+
+
+        thisUpGBAR.SetActive(true);
+        isclick = 1;
 
     }
 
