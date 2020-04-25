@@ -129,33 +129,100 @@ public class Turret : MonoBehaviour
 
                         td2.SetActive(false);
                         td1.SetActive(false);
+                            if (gameObject.tag == "Panda")
+                            {
+                                if (isTier1 == 1)
+                                {
 
-                        if (isTier1 == 1)
+                                    if (shop.balance > 100)
+                                    {
+
+                                        range += 100000;
+                                        shop.balance -= 100;
+                                        to1.SetActive(false);
+                                        to2.SetActive(true);
+                                        isTier1 = 2;
+                                        return;
+
+                                    }
+
+                            }
+                                if (isTier1 == 2)
+                                {
+
+                                    if (shop.balance > 500)
+                                    {
+                                        to2.SetActive(false);
+                                        shop.balance -= 500;
+                                        fireRate -= 1000000000000;
+                                        return;
+                                    }
+
+                                }
+
+                        }
+
+                        if (gameObject.tag == "Super Panda")
                         {
-
-                            if (shop.balance > 100)
+                            if (isTier1 == 1)
                             {
 
-                                range += 100000;
-                                fireRate -= 1000000000000;
-                                shop.balance -= 100;
-                                to1.SetActive(false);
-                                to2.SetActive(true);
-                                isTier1 = 2;
-                                return;
+                                if (shop.balance > 1000)
+                                {
+
+                                    range += 100000000;
+                                    shop.balance -= 1000;
+                                    to1.SetActive(false);
+                                    to2.SetActive(true);
+                                    isTier1 = 2;
+                                    return;
+
+                                }
+
+                            }
+                            if (isTier1 == 2)
+                            {
+
+                                if (shop.balance > 5000)
+                                {
+                                    to2.SetActive(false);
+                                    shop.balance -= 5000;
+                                    fireRate -= 1000000000000000;
+                                    return;
+                                }
 
                             }
 
                         }
-
-                        if (isTier1 == 2)
+                        if (gameObject.tag == "Robot")
                         {
-
-                            if (shop.balance > 500)
+                            if (isTier1 == 1)
                             {
-                                to2.SetActive(false);
-                                shop.balance -= 500;
-                                return;
+
+                                if (shop.balance > 5000)
+                                {
+
+                                    range += 100000000;
+                                    shop.balance -= 1000;
+                                    to1.SetActive(false);
+                                    to2.SetActive(true);
+                                    isTier1 = 2;
+                                    return;
+
+                                }
+
+                            }
+                            if (isTier1 == 2)
+                            {
+
+                                if (shop.balance > 10000)
+                                {
+                                    to2.SetActive(false);
+                                    shop.balance -= 10000;
+                                    fireRate -= 2000000000000000;
+                                    return;
+                                }
+
                             }
 
                         }
