@@ -19,7 +19,12 @@ public class EnemyMovement : MonoBehaviour
 
         void Update()
         {
+        if (target == null)
+        {
 
+            GetNextWayPoint();
+
+        }
         Vector3 dir = target.position - gameObject.transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 

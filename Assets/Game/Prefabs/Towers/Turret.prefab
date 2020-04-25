@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 8296172668344433026}
   - component: {fileID: 2589643915432292120}
   - component: {fileID: 5046330755863649535}
+  - component: {fileID: 633411512591597972}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Panda
@@ -142,7 +143,9 @@ MonoBehaviour:
   upgradeBar: {fileID: 5505082307173756544, guid: 6064f33603b8da34aae47bccfa4539ee,
     type: 3}
   thisUpGBAR: {fileID: 0}
+  isclick: 0
   offset: {x: 0, y: 9, z: -25}
+  health: 100
 --- !u!65 &2589643915432292120
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -172,6 +175,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &633411512591597972
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4952309916033217618}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1648606, y: 0.67450804, z: 1}
+  m_Center: {x: -0.0824302, y: 1.1074259, z: 0}
 --- !u!1 &5242319002372321409
 GameObject:
   m_ObjectHideFlags: 0

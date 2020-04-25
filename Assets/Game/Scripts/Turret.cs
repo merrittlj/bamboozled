@@ -43,7 +43,7 @@ public class Turret : MonoBehaviour
     public float turnSpeed = 10f;
     public Transform firePoint;
 
-    [HideInInspector]
+    
     public GameObject upgradeBar;
 
     [HideInInspector]
@@ -52,6 +52,10 @@ public class Turret : MonoBehaviour
     public int isclick;
 
     public Vector3 offset;
+
+    public int health;
+
+    private GameObject thiswayp;
 
     private void Awake()
     {
@@ -85,9 +89,10 @@ public class Turret : MonoBehaviour
 
         Vector3 desiredPos = thisOb.gameObject.transform.position + new Vector3(0, 3, 0);
 
-        GameObject wayPoint = (GameObject)Instantiate(waypoint, desiredPos, thisOb.gameObject.transform.rotation);
-        wayPoint.transform.SetParent(waypointParent.transform);
+        GameObject wayPoint1 = (GameObject)Instantiate(waypoint, desiredPos, thisOb.gameObject.transform.rotation);
+        wayPoint1.transform.SetParent(waypointParent.transform);
         endWaypoint.transform.SetParent(waypointParent.transform);
+        thiswayp = wayPoint1;
         wayp.CheckChild();
 
         to1 = thisUpGBAR.transform.Find("UpgradeTurretTierOffense1").gameObject;
@@ -98,6 +103,17 @@ public class Turret : MonoBehaviour
     }
     void Update()
     {
+
+        if (health <= 0)
+        {
+
+            Destroy(thisUpGBAR);
+            Destroy(thiswayp);
+            Destroy(gameObject);
+
+
+        }
+
         if (isclick == 1)
         {
 

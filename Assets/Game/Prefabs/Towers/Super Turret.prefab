@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2379024488441560006}
   - component: {fileID: 8296172668344433026}
-  - component: {fileID: 5458378055734867359}
   - component: {fileID: 209517396067719701}
   - component: {fileID: 479158232578243343}
   - component: {fileID: 2491280273573152478}
@@ -59,7 +58,6 @@ MonoBehaviour:
   waypointParent: {fileID: 6159694603321768039, guid: 1024d804b122e2b49af312539b4108b4,
     type: 3}
   thisOb: {fileID: 0}
-  offset: {x: 0, y: 2, z: 0}
   robotFirepoint1: {fileID: 0}
   robotFirepoint2: {fileID: 0}
   range: 300
@@ -68,19 +66,12 @@ MonoBehaviour:
   PartToRotate: {fileID: 8380820288255836474}
   turnSpeed: 50
   firePoint: {fileID: 8327480142965867478}
---- !u!114 &5458378055734867359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4952309916033217618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d09ba0fe13afa48860c7aa0cc6052a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touch: 0
+  upgradeBar: {fileID: 5505082307173756544, guid: 056f3bbcf02f9eb48b28453117ec1420,
+    type: 3}
+  thisUpGBAR: {fileID: 0}
+  isclick: 0
+  offset: {x: 0, y: 0, z: 0}
+  health: 0
 --- !u!65 &209517396067719701
 BoxCollider:
   m_ObjectHideFlags: 0
