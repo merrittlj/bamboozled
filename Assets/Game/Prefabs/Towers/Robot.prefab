@@ -183,7 +183,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8329072479455381830}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d80e36834ba94904588012c185f0baa1, type: 3}
   m_Name: 
@@ -194,15 +194,20 @@ MonoBehaviour:
   waypointParent: {fileID: 6159694603321768039, guid: 1024d804b122e2b49af312539b4108b4,
     type: 3}
   thisOb: {fileID: 0}
-  offset: {x: 0, y: 2, z: 0}
   robotFirepoint1: {fileID: 4953339442183012034}
   robotFirepoint2: {fileID: 8564003666567812929}
-  range: 300
-  fireRate: 3.4028235e+38
+  range: 0
+  fireRate: 0
   enemyTag: Enemy
   PartToRotate: {fileID: 4855526143203621934}
   turnSpeed: 5000
   firePoint: {fileID: 4953339442183012034}
+  upgradeBar: {fileID: 5505082307173756544, guid: 79ca9234dfb0ac84bb72cc748cd88475,
+    type: 3}
+  thisUpGBAR: {fileID: 0}
+  isclick: 0
+  offset: {x: 0, y: 9, z: -25}
+  health: 1000
 --- !u!114 &3878467679625741727
 MonoBehaviour:
   m_ObjectHideFlags: 0
