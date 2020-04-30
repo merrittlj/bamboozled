@@ -633,10 +633,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 8f0a86d4-f2f8-4848-b9b6-d65989e240c2
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: TowerDefense
+  organizationId: cyber-spyder
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

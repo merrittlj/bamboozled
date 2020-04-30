@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 21088087863672946}
   - component: {fileID: 6724713081540431219}
   - component: {fileID: 4890125511919864315}
+  - component: {fileID: 6402586265183789565}
   m_Layer: 0
   m_Name: TurretProjectile
   m_TagString: Bullet
@@ -124,3 +125,15 @@ MonoBehaviour:
   speed: 100
   ImpactEffect: {fileID: 3253384626949389815, guid: 3f16c6fd7bbaab24a8fb829ce593765a,
     type: 3}
+--- !u!114 &6402586265183789565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708555714103306185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362292df2f7245a40bf1da250800e95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

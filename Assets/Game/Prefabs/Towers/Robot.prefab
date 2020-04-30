@@ -188,6 +188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80e36834ba94904588012c185f0baa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHealth: 1000
+  healthBar: {fileID: 2399919015545603978, guid: 85d26b40c0d06ad41a488d2fa694a765,
+    type: 3}
   endWaypoint: {fileID: 0}
   waypoint: {fileID: 5872397226297253412, guid: 690c3c440bdeb474e88d9e8e5f63b036,
     type: 3}
@@ -264,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLeft: 15
   activated: 0
+  howmanytime: 0
 --- !u!114 &7945076909116036476
 MonoBehaviour:
   m_ObjectHideFlags: 0

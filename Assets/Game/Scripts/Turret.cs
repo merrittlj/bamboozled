@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public class Turret : MonoBehaviour
     Waypoints wayp;
     Shop shop;
     Upgrade upg;
+
+    public int startHealth;
+
+    [Header("Health Bar Stuff")]
+    public Image healthBar;
+    private Image thisHealthBar;
+    private int calculateHealth;
+    private GameObject healthBarHolder;
+    private GameObject desiredRotOb;
 
     [Header("Waypoint stuff")]
     public GameObject endWaypoint;
@@ -66,10 +76,6 @@ public class Turret : MonoBehaviour
         shop = Shop.instance;
         upg = Upgrade.instance;
 
-        Vector3 desiredPosTurUp = gameObject.transform.position + offset;
-        thisUpGBAR = (GameObject)Instantiate(upgradeBar, desiredPosTurUp, Quaternion.identity);
-        thisUpGBAR.SetActive(false);
-
     }
 
     void Start()
@@ -80,6 +86,8 @@ public class Turret : MonoBehaviour
         waypoint = GameObject.Find("Waypoints/Waypoint");
         waypointParent = GameObject.Find("Waypoints");
         endWaypoint = GameObject.Find("EndWaypoint");
+        healthBarHolder = GameObject.Find("Canvases/HealthBarCanvas");
+        desiredRotOb = GameObject.Find("DesiredRotHealthBarOb");
 
         endWaypointPos = endWaypoint.transform.position;
 
@@ -95,20 +103,31 @@ public class Turret : MonoBehaviour
         thiswayp = wayPoint1;
         wayp.CheckChild();
 
+        Vector3 desiredPosTurUp = gameObject.transform.position + offset;
+        thisUpGBAR = (GameObject)Instantiate(upgradeBar, desiredPosTurUp, Quaternion.identity);
+        thisUpGBAR.SetActive(false);
+
         to1 = thisUpGBAR.transform.Find("UpgradeTurretTierOffense1").gameObject;
         to2 = thisUpGBAR.transform.Find("UpgradeTurretTierOffense2").gameObject;
         td1 = thisUpGBAR.transform.Find("UpgradeTurretTierDefense1").gameObject;
         td2 = thisUpGBAR.transform.Find("UpgradeTurretTierDefense2").gameObject;
 
+        Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(0, 5, 0);
+        thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
+        thisHealthBar.transform.SetParent(healthBarHolder.transform);
+
     }
     void Update()
     {
+
+        thisHealthBar.transform.Find("HealthBar").GetComponent<Image>().fillAmount = health * 0.01f;
 
         if (health <= 0)
         {
 
             Destroy(thisUpGBAR);
             Destroy(thiswayp);
+            Destroy(thisHealthBar);
             Destroy(gameObject);
 
 

@@ -20,6 +20,8 @@ public class Robot : MonoBehaviour
     private GameObject endWaypoint;
     private GameObject thisOb;
 
+    public int howmanytime;
+
     private void Awake()
     {
 
@@ -96,9 +98,25 @@ public class Robot : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (howmanytime == 1)
+        {
+            activated = !activated;
+            StartCoroutine(ifActivated());
 
-        activated = !activated;
-        StartCoroutine(ifActivated());
+        }
+        if (howmanytime >= 2)
+        {
+
+            howmanytime = 0;
+            activated = false;
+
+        }
+        else
+        {
+
+            howmanytime++;
+
+        }
 
     }
 

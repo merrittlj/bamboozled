@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyTurret : MonoBehaviour
@@ -7,7 +6,7 @@ public class DestroyTurret : MonoBehaviour
 
     Turret turret;
 
-    private bool waited;
+    public bool waited;
 
     private GameObject touchob;
 
@@ -20,26 +19,31 @@ public class DestroyTurret : MonoBehaviour
 
         enmove.enabled = true;
 
+        waited = false;
+
     }
 
     private void Update()
     {
 
         EnemyMovement enmove = GetComponent<EnemyMovement>();
-
-        if (touchob != null && touchob.transform.tag == "Panda")
+        if (waited == true)
         {
 
-            enmove.enabled = false;
-            if (waited == true)
+            if (touchob != null)
             {
+                if (touchob.transform.tag == "Panda" || touchob.transform.tag == "Super Panda" || touchob.transform.tag == "Robot")
+                {
 
-                touchob.transform.gameObject.GetComponent<Turret>().health -= 10;
-                waited = false;
-                StartCoroutine(wait1());
+                    enmove.enabled = false;
+                    StartCoroutine(wait1());
+                    touchob.transform.gameObject.GetComponent<Turret>().health -= 10;
+                    waited = false;
+
+                }
+
 
             }
-
 
         }
         if (touchob == null)
@@ -53,18 +57,23 @@ public class DestroyTurret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Panda" || other.gameObject.tag == "Super Panda" || other.gameObject.tag == "Robot")
+        {
 
-        StartCoroutine(wait1());
+            StartCoroutine(wait1());
 
-        touchob = other.gameObject;
+            touchob = other.gameObject;
+
+        }
 
     }
 
     IEnumerator wait1()
     {
 
-
-        yield return new WaitForSeconds(5);
+        EnemyMovement enmove = GetComponent<EnemyMovement>();
+        enmove.enabled = false;
+        yield return new WaitForSeconds(1);
         waited = true;
 
     }
