@@ -13,14 +13,13 @@ public class Turret : MonoBehaviour
     Shop shop;
     Upgrade upg;
 
-    public int startHealth;
-
     [Header("Health Bar Stuff")]
     public Image healthBar;
     private Image thisHealthBar;
     private int calculateHealth;
     private GameObject healthBarHolder;
     private GameObject desiredRotOb;
+    private Image thisHealthBarFill;
 
     [Header("Waypoint stuff")]
     public GameObject endWaypoint;
@@ -63,7 +62,8 @@ public class Turret : MonoBehaviour
 
     public Vector3 offset;
 
-    public int health;
+    public float health;
+    private float startHealth;
 
     private GameObject thiswayp;
 
@@ -116,22 +116,11 @@ public class Turret : MonoBehaviour
         thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
         thisHealthBar.transform.SetParent(healthBarHolder.transform);
 
+        startHealth = health;
+
     }
     void Update()
     {
-
-        thisHealthBar.transform.Find("HealthBar").GetComponent<Image>().fillAmount = health * 0.01f;
-
-        if (health <= 0)
-        {
-
-            Destroy(thisUpGBAR);
-            Destroy(thiswayp);
-            Destroy(thisHealthBar);
-            Destroy(gameObject);
-
-
-        }
 
         if (isclick == 1)
         {
@@ -393,6 +382,26 @@ public class Turret : MonoBehaviour
 
         thisUpGBAR.SetActive(true);
         isclick = 1;
+
+    }
+
+    public void TakeDamage(float amount)
+    {
+
+        health -= amount;
+
+        thisHealthBar.transform.Find("HealthBar").GetComponent<Image>().fillAmount = health / startHealth;
+
+        if (health <= 0)
+        {
+
+            Destroy(thisUpGBAR);
+            Destroy(thiswayp);
+            Destroy(thisHealthBar);
+            Destroy(gameObject);
+
+
+        }
 
     }
 

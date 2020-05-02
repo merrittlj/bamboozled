@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80e36834ba94904588012c185f0baa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHealth: 0
+  healthBar: {fileID: 3168437257754760532, guid: e61cb1a903f71484db83f42395a819fe,
+    type: 3}
   endWaypoint: {fileID: 0}
   waypoint: {fileID: 5872397226297253412, guid: 690c3c440bdeb474e88d9e8e5f63b036,
     type: 3}

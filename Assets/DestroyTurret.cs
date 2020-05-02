@@ -37,7 +37,7 @@ public class DestroyTurret : MonoBehaviour
 
                     enmove.enabled = false;
                     StartCoroutine(wait1());
-                    touchob.transform.gameObject.GetComponent<Turret>().health -= 10;
+                    touchob.transform.gameObject.GetComponent<Turret>().TakeDamage(10);
                     waited = false;
 
                 }
