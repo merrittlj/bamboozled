@@ -104,8 +104,6 @@ public class Robot : MonoBehaviour
 
             float calcBat = battery / startbattery;
 
-            Debug.Log(battery + " divided by " + startbattery + " = " + calcBat);
-
             thisBatteryBar.transform.Find("HealthBar").GetComponent<Image>().fillAmount = calcBat;
 
         }

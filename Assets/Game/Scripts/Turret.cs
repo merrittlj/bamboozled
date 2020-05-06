@@ -105,7 +105,7 @@ public class Turret : MonoBehaviour
         wayp.CheckChild();
 
         Vector3 desiredPosTurUp = gameObject.transform.position + offset;
-        thisUpGBAR = (GameObject)Instantiate(upgradeBar, desiredPosTurUp, Quaternion.identity);
+        thisUpGBAR = (GameObject)Instantiate(upgradeBar, desiredPosTurUp, upgradeBar.transform.rotation);
         thisUpGBAR.SetActive(false);
 
         to1 = thisUpGBAR.transform.Find("UpgradeTurretTierOffense1").gameObject;

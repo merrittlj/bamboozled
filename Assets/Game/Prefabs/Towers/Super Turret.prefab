@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80e36834ba94904588012c185f0baa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 0
   healthBar: {fileID: 3168437257754760532, guid: e61cb1a903f71484db83f42395a819fe,
     type: 3}
   endWaypoint: {fileID: 0}
@@ -73,7 +72,7 @@ MonoBehaviour:
     type: 3}
   thisUpGBAR: {fileID: 0}
   isclick: 0
-  offset: {x: 0, y: 9, z: -25}
+  offset: {x: 10, y: 1, z: -10}
   health: 100000
 --- !u!65 &209517396067719701
 BoxCollider:
