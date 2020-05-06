@@ -37,8 +37,20 @@ public class DestroyTurret : MonoBehaviour
 
                     enmove.enabled = false;
                     StartCoroutine(wait1());
-                    touchob.transform.gameObject.GetComponent<Turret>().TakeDamage(10);
-                    waited = false;
+                    if (touchob.gameObject.tag == "Robot")
+                    {
+
+                        Destroy(touchob.gameObject);
+
+                    }
+
+                    else
+                    {
+
+                        touchob.transform.gameObject.GetComponent<Turret>().TakeDamage(10);
+                        waited = false;
+
+                    }
 
                 }
 

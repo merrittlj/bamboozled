@@ -20,6 +20,7 @@ public class Turret : MonoBehaviour
     private GameObject healthBarHolder;
     private GameObject desiredRotOb;
     private Image thisHealthBarFill;
+    private Vector3 desiredPosHealthBar;
 
     [Header("Waypoint stuff")]
     public GameObject endWaypoint;
@@ -112,11 +113,28 @@ public class Turret : MonoBehaviour
         td1 = thisUpGBAR.transform.Find("UpgradeTurretTierDefense1").gameObject;
         td2 = thisUpGBAR.transform.Find("UpgradeTurretTierDefense2").gameObject;
 
-        Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(0, 5, 0);
-        thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
-        thisHealthBar.transform.SetParent(healthBarHolder.transform);
+        if (gameObject.tag == "Panda")
+        {
 
-        startHealth = health;
+            Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(0, 5, 0);
+
+            thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
+            thisHealthBar.transform.SetParent(healthBarHolder.transform);
+
+            startHealth = health;
+
+        }
+        if (gameObject.tag == "Super Panda")
+        {
+
+            Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(0, 10, 0);
+
+            thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
+            thisHealthBar.transform.SetParent(healthBarHolder.transform);
+
+            startHealth = health;
+
+        }
 
     }
     void Update()

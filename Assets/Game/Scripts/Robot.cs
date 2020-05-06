@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Robot : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Robot : MonoBehaviour
     Turret turret;
 
     [Header("Attributes")]
-    public int timeLeft = 30;
+    public int timeLeft = 10;
 
     public bool activated = false;
     private bool waited = false;
@@ -21,6 +22,17 @@ public class Robot : MonoBehaviour
     private GameObject thisOb;
 
     public int howmanytime;
+
+    [Header("Health Bar Stuff")]
+    public Image batteryBar;
+    private Image thisBatteryBar;
+    private int calculateHealth;
+    private GameObject healthBarHolder;
+    private GameObject desiredRotOb;
+    private Image thisBatteryBarFill;
+    private Vector3 desiredPosHealthBar;
+    private float startbattery;
+    public float battery;
 
     private void Awake()
     {
@@ -39,16 +51,24 @@ public class Robot : MonoBehaviour
         waypoint = GameObject.Find("Waypoints/Waypoint");
         waypointParent = GameObject.Find("Waypoints");
         endWaypoint = GameObject.Find("EndWaypoint");
+        healthBarHolder = GameObject.Find("Canvases/HealthBarCanvas");
+        desiredRotOb = GameObject.Find("DesiredRotHealthBarOb");
 
         endWaypoint.transform.SetParent(transform);
 
         Vector3 desiredPos = thisOb.gameObject.transform.position + new Vector3(0, 3, 0);
 
         GameObject wayPoint = (GameObject)Instantiate(waypoint, desiredPos, thisOb.gameObject.transform.rotation);
-        Instantiate(endWaypoint);
         wayPoint.transform.SetParent(waypointParent.transform);
         endWaypoint.transform.SetParent(waypointParent.transform);
         wayp.CheckChild();
+
+        Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(3, 7, 0);
+
+        thisBatteryBar = (Image)Instantiate(batteryBar, desiredPosHealthBar, Quaternion.Euler(50, 90, 0));
+        thisBatteryBar.transform.SetParent(healthBarHolder.transform);
+
+        startbattery = battery;
 
     }
 
@@ -58,7 +78,6 @@ public class Robot : MonoBehaviour
         if (timeLeft <= 0)
         {
 
-            Debug.Log("BEEP BEEP BEEP BOOM");
             activated = false;
 
         }
@@ -66,7 +85,7 @@ public class Robot : MonoBehaviour
         if (waited == true)
         {
 
-            RobotShoot();
+            Countdown();
             waited = false;
 
         }
@@ -83,14 +102,21 @@ public class Robot : MonoBehaviour
 
             turret.Shoot();
 
+            float calcBat = battery / startbattery;
+
+            Debug.Log(battery + " divided by " + startbattery + " = " + calcBat);
+
+            thisBatteryBar.transform.Find("HealthBar").GetComponent<Image>().fillAmount = calcBat;
+
         }
 
     }
 
-    void RobotShoot()
+    void Countdown()
     {
 
         timeLeft -= 1;
+        battery -= 1;
         StartCoroutine(ifActivated());
         return;
 
@@ -98,25 +124,9 @@ public class Robot : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (howmanytime == 1)
-        {
-            activated = !activated;
-            StartCoroutine(ifActivated());
 
-        }
-        if (howmanytime >= 2)
-        {
-
-            howmanytime = 0;
-            activated = false;
-
-        }
-        else
-        {
-
-            howmanytime++;
-
-        }
+        activated = !activated;
+        StartCoroutine(ifActivated());
 
     }
 
