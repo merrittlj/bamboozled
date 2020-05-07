@@ -13,6 +13,7 @@ TagManager:
   - TierDefense
   - END
   - Robot
+  - Medic
   layers:
   - Default
   - TransparentFX

@@ -16,8 +16,8 @@ public class Shop : MonoBehaviour
     public TurretBlueprint turretPlaceHolder;
 
     [Header("TurretBlueprints")]
-    public TurretBlueprint turret;
-    public TurretBlueprint superturret;
+    public TurretBlueprint panda;
+    public TurretBlueprint medic;
     public TurretBlueprint robot;
 
     private string turretSelected;
@@ -47,7 +47,7 @@ public class Shop : MonoBehaviour
         if (buildManager.created == true)
         {
 
-            buildManager.SelectTurretToBuild(turretPlaceHolder);
+            buildManager.SelectTowerToBuild(turretPlaceHolder);
             StartCoroutine(waitabit());
             if (waited == true)
             {
@@ -70,16 +70,15 @@ public class Shop : MonoBehaviour
 
     }
 
-    public void SelectTurret()
+    public void SelectPanda()
     {
 
-            if (balance >= turret.cost)
+            if (balance >= panda.cost)
             {
 
-                balance -= turret.cost;
-                Debug.Log("Turret Selected");
-                buildManager.SelectTurretToBuild(turret);
-                turretSelected = "turret";
+                balance -= panda.cost;
+                Debug.Log("Panda Selected");
+                buildManager.SelectTowerToBuild(panda);
                 return;
 
             }
@@ -93,16 +92,15 @@ public class Shop : MonoBehaviour
             }
 
     }
-    public void SelectSuperturret()
+    public void SelectMedic()
     {
 
-        if (balance >= superturret.cost)
+        if (balance >= medic.cost)
         {
 
-                balance -= superturret.cost;
-                Debug.Log("Super turret Selected");
-                buildManager.SelectTurretToBuild(superturret);
-                turretSelected = "superturret";
+                balance -= medic.cost;
+                Debug.Log("Medic Selected");
+                buildManager.SelectTowerToBuild(medic);
                 return;
 
         }
@@ -124,7 +122,7 @@ public class Shop : MonoBehaviour
 
             balance -= robot.cost;
             Debug.Log("Robot Selected");
-            buildManager.SelectTurretToBuild(robot);
+            buildManager.SelectTowerToBuild(robot);
             turretSelected = "robot";
             return;
 
@@ -151,17 +149,17 @@ public class Shop : MonoBehaviour
     public void SelectTower(string WhatTower)
     {
 
-        if (WhatTower == "Turret")
+        if (WhatTower == "Panda")
         {
 
-            SelectTurret();
+            SelectPanda();
 
         }
 
-        if (WhatTower == "Super Turret")
+        if (WhatTower == "Medic")
         {
 
-            SelectSuperturret();
+            SelectMedic();
 
         }
 

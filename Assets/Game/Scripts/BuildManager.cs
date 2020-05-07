@@ -16,8 +16,8 @@ public class BuildManager : MonoBehaviour
 
     }
 
-    public GameObject standardTurretPrefab;
-    public GameObject superTurretPrefab;
+    public GameObject pandaPrefab;
+    public GameObject medicPrefab;
     public GameObject robotPrefab;
 
     public TurretBlueprint TurretToBuild;
@@ -32,10 +32,10 @@ public class BuildManager : MonoBehaviour
 
     }
 
-    public void SelectTurretToBuild(TurretBlueprint turret)
+    public void SelectTowerToBuild(TurretBlueprint tower)
     {
 
-        TurretToBuild.prefab = turret.prefab;
+        TurretToBuild.prefab = tower.prefab;
 
     }
 

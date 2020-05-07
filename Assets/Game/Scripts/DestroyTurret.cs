@@ -32,7 +32,7 @@ public class DestroyTurret : MonoBehaviour
 
             if (touchob != null)
             {
-                if (touchob.transform.tag == "Panda" || touchob.transform.tag == "Super Panda" || touchob.transform.tag == "Robot")
+                if (touchob.transform.tag == "Panda" || touchob.transform.tag == "Medic" || touchob.transform.tag == "Robot")
                 {
 
                     enmove.enabled = false;
@@ -69,7 +69,7 @@ public class DestroyTurret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Panda" || other.gameObject.tag == "Super Panda" || other.gameObject.tag == "Robot")
+        if (other.gameObject.tag == "Panda" || other.gameObject.tag == "Medic" || other.gameObject.tag == "Robot")
         {
 
             StartCoroutine(wait1());

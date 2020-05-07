@@ -116,7 +116,7 @@ public class Turret : MonoBehaviour
         if (gameObject.tag == "Panda")
         {
 
-            Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(0, 5, 0);
+            Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(3, 5, 0);
 
             thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
             thisHealthBar.transform.SetParent(healthBarHolder.transform);
@@ -124,7 +124,7 @@ public class Turret : MonoBehaviour
             startHealth = health;
 
         }
-        if (gameObject.tag == "Super Panda")
+        if (gameObject.tag == "Medic")
         {
 
             Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(0, 10, 0);
@@ -188,7 +188,7 @@ public class Turret : MonoBehaviour
 
                         }
 
-                        if (gameObject.tag == "Super Panda")
+                        if (gameObject.tag == "Medic")
                         {
                             if (isTier1 == 1)
                             {
@@ -196,7 +196,6 @@ public class Turret : MonoBehaviour
                                 if (shop.balance > 1000)
                                 {
 
-                                    range += 100000000;
                                     shop.balance -= 1000;
                                     to1.SetActive(false);
                                     to2.SetActive(true);
@@ -213,7 +212,6 @@ public class Turret : MonoBehaviour
                                 {
                                     to2.SetActive(false);
                                     shop.balance -= 5000;
-                                    fireRate -= 1000000000000000;
                                     return;
                                 }
 
@@ -334,7 +332,7 @@ public class Turret : MonoBehaviour
         if (this.gameObject.tag == "Panda")
         {
 
-            GameObject bulletGO = (GameObject)Instantiate(shop.turret.projectile, firePoint.position, firePoint.rotation);
+            GameObject bulletGO = (GameObject)Instantiate(shop.panda.projectile, firePoint.position, firePoint.rotation);
             BulletTest bullet = bulletGO.GetComponent<BulletTest>();
 
             if (bullet != null)
@@ -346,10 +344,10 @@ public class Turret : MonoBehaviour
 
         }
 
-        if (this.gameObject.tag == "Super Panda")
+        if (this.gameObject.tag == "Medic")
         {
 
-            GameObject bulletGO = (GameObject)Instantiate(shop.superturret.projectile, firePoint.position, firePoint.rotation);
+            GameObject bulletGO = (GameObject)Instantiate(shop.medic.projectile, firePoint.position, firePoint.rotation);
             BulletTest bullet = bulletGO.GetComponent<BulletTest>();
 
             if (bullet != null)
