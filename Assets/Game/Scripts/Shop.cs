@@ -148,4 +148,30 @@ public class Shop : MonoBehaviour
 
     }
 
+    public void SelectTower(string WhatTower)
+    {
+
+        if (WhatTower == "Turret")
+        {
+
+            SelectTurret();
+
+        }
+
+        if (WhatTower == "Super Turret")
+        {
+
+            SelectSuperturret();
+
+        }
+
+        if (WhatTower == "Robot")
+        {
+
+            SelectRobot();
+
+        }
+
+    }
+
 }
