@@ -15,7 +15,7 @@ public class Turret : MonoBehaviour
 
     [Header("Health Bar Stuff")]
     public Image healthBar;
-    private Image thisHealthBar;
+    public Image thisHealthBar;
     private int calculateHealth;
     private GameObject healthBarHolder;
     private GameObject desiredRotOb;
@@ -64,7 +64,7 @@ public class Turret : MonoBehaviour
     public Vector3 offset;
 
     public float health;
-    private float startHealth;
+    public float startHealth;
 
     private GameObject thiswayp;
 

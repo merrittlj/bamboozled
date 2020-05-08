@@ -10,7 +10,16 @@ public class EnemyMovement : MonoBehaviour
     private Transform target;
     private int wavepointIndex = 0;
 
-        void Start()
+    public static EnemyMovement instance;
+
+    private void Awake()
+    {
+
+        instance = this;
+
+    }
+
+    void Start()
         {
 
         target = Waypoints.points[0];

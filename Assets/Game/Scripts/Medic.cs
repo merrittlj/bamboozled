@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Medic : MonoBehaviour
 {
@@ -62,9 +63,15 @@ public class Medic : MonoBehaviour
             if (iswaited == true)
             {
 
-                closestTower.GetComponent<Turret>().health += 2;
-                iswaited = false;
-                StartCoroutine(heal());
+                if (closestTower.GetComponent<Turret>().health != closestTower.GetComponent<Turret>().startHealth)
+                {
+
+                    closestTower.GetComponent<Turret>().health += 1;
+                    closestTower.GetComponent<Turret>().thisHealthBar.transform.Find("HealthBar").GetComponent<Image>().fillAmount = closestTower.GetComponent<Turret>().health / closestTower.GetComponent<Turret>().startHealth;
+                    iswaited = false;
+                    StartCoroutine(heal());
+
+                }
 
             }
 

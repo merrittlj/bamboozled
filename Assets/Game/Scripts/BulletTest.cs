@@ -89,8 +89,8 @@ public class BulletTest : MonoBehaviour
         shop.balance++;
 
         Destroy(effectIns, 2f);
-        Destroy(this.gameObject);
-        Destroy(hitOb);
+        Destroy(gameObject);
+        hitOb.GetComponent<Enemy>().TakeDamage(33);
 
     }
 
@@ -98,7 +98,7 @@ public class BulletTest : MonoBehaviour
     {
 
         yield return new WaitForSeconds(3f);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
 
     }
 
