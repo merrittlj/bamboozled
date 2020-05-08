@@ -140,6 +140,8 @@ public class Turret : MonoBehaviour
     void Update()
     {
 
+        thisHealthBar.transform.Find("HealthBar").GetComponent<Image>().fillAmount = health / startHealth;
+
         if (isclick == 1)
         {
 

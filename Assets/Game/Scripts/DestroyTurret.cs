@@ -40,7 +40,7 @@ public class DestroyTurret : MonoBehaviour
                     if (touchob.gameObject.tag == "Robot")
                     {
 
-                        Destroy(touchob.gameObject);
+                        touchob.gameObject.GetComponent<Robot>().health = 0;
 
                     }
 

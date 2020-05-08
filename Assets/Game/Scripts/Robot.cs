@@ -7,8 +7,15 @@ public class Robot : MonoBehaviour
 {
     public static Robot instance;
 
+    private Transform target;
+
+    public GameObject robotfirePoint1;
+    public GameObject robotfirePoint2;
+
     Waypoints wayp;
     Turret turret;
+    Shop shop;
+    BulletTest bullet;
 
     [Header("Attributes")]
     public int timeLeft = 10;
@@ -20,19 +27,21 @@ public class Robot : MonoBehaviour
     private GameObject waypointParent;
     private GameObject endWaypoint;
     private GameObject thisOb;
+    public GameObject thiswaypoint;
 
     public int howmanytime;
 
     [Header("Health Bar Stuff")]
     public Image batteryBar;
-    private Image thisBatteryBar;
+    public Image thisBatteryBar;
     private int calculateHealth;
     private GameObject healthBarHolder;
     private GameObject desiredRotOb;
-    private Image thisBatteryBarFill;
     private Vector3 desiredPosHealthBar;
     private float startbattery;
     public float battery;
+
+    public float health;
 
     private void Awake()
     {
@@ -46,6 +55,8 @@ public class Robot : MonoBehaviour
 
         turret = Turret.instance;
         wayp = Waypoints.instance;
+        shop = Shop.instance;
+        bullet = BulletTest.instance;
 
         thisOb = this.gameObject;
         waypoint = GameObject.Find("Waypoints/Waypoint");
@@ -58,8 +69,8 @@ public class Robot : MonoBehaviour
 
         Vector3 desiredPos = thisOb.gameObject.transform.position + new Vector3(0, 3, 0);
 
-        GameObject wayPoint = (GameObject)Instantiate(waypoint, desiredPos, thisOb.gameObject.transform.rotation);
-        wayPoint.transform.SetParent(waypointParent.transform);
+        thiswaypoint = (GameObject)Instantiate(waypoint, desiredPos, thisOb.gameObject.transform.rotation);
+        thiswaypoint.transform.SetParent(waypointParent.transform);
         endWaypoint.transform.SetParent(waypointParent.transform);
         wayp.CheckChild();
 
@@ -75,6 +86,15 @@ public class Robot : MonoBehaviour
     private void Update()
     {
         
+        if (health <= 0)
+        {
+
+            Destroy(thiswaypoint);
+            Destroy(thisBatteryBar.gameObject);
+            Destroy(gameObject);
+
+        }
+
         if (timeLeft <= 0)
         {
 
@@ -100,7 +120,7 @@ public class Robot : MonoBehaviour
         if (activated == true)
         {
 
-            turret.Shoot();
+            Shoot();
 
             float calcBat = battery / startbattery;
 
@@ -133,6 +153,29 @@ public class Robot : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         waited = true;
+
+    }
+
+    void Shoot()
+    {
+
+        GameObject bulletGO1 = (GameObject)Instantiate(shop.robot.projectile, robotfirePoint1.transform.position, robotfirePoint1.transform.rotation);
+        GameObject bulletGO2 = (GameObject)Instantiate(shop.robot.projectile, robotfirePoint2.transform.position, robotfirePoint2.transform.rotation);
+        BulletTest bullet1 = bulletGO1.GetComponent<BulletTest>();
+        BulletTest bullet2 = bulletGO2.GetComponent<BulletTest>();
+
+        if (bullet1 != null)
+        {
+
+            bullet1.Seek(target);
+
+        }
+        if (bullet2 != null)
+        {
+
+            bullet2.Seek(target);
+
+        }
 
     }
 

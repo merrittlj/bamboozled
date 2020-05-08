@@ -222,7 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e8b96a9b480d247b581c5bf4bf2923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  closestTower: {fileID: 0}
   closestDistance: 999
+  lr: {fileID: 8037829835734280415}
 --- !u!114 &8183401513693408214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 3168437257754760532, guid: e61cb1a903f71484db83f42395a819fe,
     type: 3}
+  thisHealthBar: {fileID: 0}
   endWaypoint: {fileID: 0}
   waypoint: {fileID: 5872397226297253412, guid: 690c3c440bdeb474e88d9e8e5f63b036,
     type: 3}
@@ -259,6 +262,7 @@ MonoBehaviour:
   isclick: 0
   offset: {x: 6, y: 1, z: -10}
   health: 100
+  startHealth: 0
 --- !u!1 &5259262408733658247
 GameObject:
   m_ObjectHideFlags: 0

@@ -152,7 +152,6 @@ GameObject:
   - component: {fileID: 8152861122518049259}
   - component: {fileID: 6814469874816785011}
   - component: {fileID: 7945076909116036476}
-  - component: {fileID: -6338678303542435679}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Robot
@@ -216,12 +215,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3af8bcc5439ccb4597f54bb96885a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  robotfirePoint1: {fileID: 7524818881355646971}
+  robotfirePoint2: {fileID: 3926565053882202575}
   timeLeft: 10
   activated: 0
+  thiswaypoint: {fileID: 0}
   howmanytime: 0
   batteryBar: {fileID: 3168437257754760532, guid: 474edfb4c37e6e949be562271969d2f9,
     type: 3}
+  thisBatteryBar: {fileID: 0}
   battery: 10
+  health: 1
 --- !u!114 &7945076909116036476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,36 +238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777d7ba744cb03748b37bd8908611773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-6338678303542435679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8329072479455381830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d80e36834ba94904588012c185f0baa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  endWaypoint: {fileID: 0}
-  waypoint: {fileID: 0}
-  waypointParent: {fileID: 0}
-  thisOb: {fileID: 0}
-  robotFirepoint1: {fileID: 4953339442183012034}
-  robotFirepoint2: {fileID: 8564003666567812929}
-  range: 15
-  fireRate: 1
-  enemyTag: Enemy
-  PartToRotate: {fileID: 0}
-  turnSpeed: 10
-  firePoint: {fileID: 0}
-  upgradeBar: {fileID: 0}
-  thisUpGBAR: {fileID: 0}
-  isclick: 0
-  offset: {x: 0, y: 0, z: 0}
-  health: 0
 --- !u!1 &9209944392725754259
 GameObject:
   m_ObjectHideFlags: 0

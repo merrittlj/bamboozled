@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class Medic : MonoBehaviour
 {
 
-    private GameObject closestTower;
+    public GameObject closestTower;
     public float closestDistance;
-    private LineRenderer lr;
+    public LineRenderer lr;
 
     GameObject[] towers;
 
@@ -16,8 +16,6 @@ public class Medic : MonoBehaviour
 
     private void Start()
     {
-
-        lr = GameObject.Find("lr").gameObject.GetComponent<LineRenderer>();
 
         lr.enabled = false;
 
@@ -58,16 +56,15 @@ public class Medic : MonoBehaviour
             lr.SetPosition(0, gameObject.transform.position + new Vector3(0, 2.5f, 0));
             lr.SetPosition(1, closestTower.transform.position + new Vector3(0, 2.5f, 0));
 
-            lr.material.mainTextureScale = new Vector2(closestDistance * 4, 1);
+            lr.material.mainTextureScale = new Vector2(closestDistance * 2, 1);
 
             if (iswaited == true)
             {
 
-                if (closestTower.GetComponent<Turret>().health != closestTower.GetComponent<Turret>().startHealth)
+                if (closestTower.GetComponent<Turret>().health < closestTower.GetComponent<Turret>().startHealth)
                 {
 
                     closestTower.GetComponent<Turret>().health += 1;
-                    closestTower.GetComponent<Turret>().thisHealthBar.transform.Find("HealthBar").GetComponent<Image>().fillAmount = closestTower.GetComponent<Turret>().health / closestTower.GetComponent<Turret>().startHealth;
                     iswaited = false;
                     StartCoroutine(heal());
 

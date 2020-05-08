@@ -34,8 +34,14 @@ public class EnemyMovement : MonoBehaviour
             GetNextWayPoint();
 
         }
-        Vector3 dir = target.position - gameObject.transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+
+        if (target != null)
+        {
+
+            Vector3 dir = target.position - gameObject.transform.position;
+            transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+
+        }
 
         if (Vector3.Distance(transform.position, target.position) <= 0.4f)
         {
