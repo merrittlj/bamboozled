@@ -177,7 +177,7 @@ public class Turret : MonoBehaviour
                                 if (isTier1 == 1)
                                 {
 
-                                    if (shop.balance > 100)
+                                    if (shop.balance > 500)
                                     {
 
                                         range -= 3;
@@ -243,18 +243,25 @@ public class Turret : MonoBehaviour
                             }
 
                         }
-                        if (gameObject.tag == "Robot")
+
+                    }
+                    if (hit.transform.gameObject == td1 || hit.transform.gameObject == td2)
+                    {
+
+                        if (gameObject.tag == "Panda")
                         {
                             if (isTier1 == 1)
                             {
 
-                                if (shop.balance > 5000)
+                                if (shop.balance > 500)
                                 {
 
-                                    range += 100000000;
-                                    shop.balance -= 1000;
-                                    to1.SetActive(false);
-                                    to2.SetActive(true);
+                                    health += 25;
+                                    damage -= 10;
+                                    range += 7.5f;
+                                    shop.balance -= 500;
+                                    td1.SetActive(false);
+                                    td2.SetActive(true);
                                     isTier1 = 2;
                                     return;
 
@@ -264,11 +271,14 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 10000)
+                                if (shop.balance > 2000)
                                 {
-                                    to2.SetActive(false);
-                                    shop.balance -= 10000;
-                                    fireRate -= 2000000000000000;
+
+                                    health += 75;
+                                    damage -= 15;
+                                    range += 20;
+                                    td2.SetActive(false);
+                                    shop.balance -= 2000;
                                     return;
                                 }
 
@@ -276,12 +286,36 @@ public class Turret : MonoBehaviour
 
                         }
 
-                    }
-                    if (hit.transform.gameObject == td1 || hit.transform.gameObject == td2)
-                    {
+                        if (gameObject.tag == "Medic")
+                        {
+                            if (isTier1 == 1)
+                            {
 
-                        to2.SetActive(false);
-                        to1.SetActive(false);
+                                if (shop.balance > 1000)
+                                {
+
+                                    shop.balance -= 1000;
+                                    td1.SetActive(false);
+                                    td2.SetActive(true);
+                                    isTier1 = 2;
+                                    return;
+
+                                }
+
+                            }
+                            if (isTier1 == 2)
+                            {
+
+                                if (shop.balance > 5000)
+                                {
+                                    td2.SetActive(false);
+                                    shop.balance -= 5000;
+                                    return;
+                                }
+
+                            }
+
+                        }
 
                     }
 

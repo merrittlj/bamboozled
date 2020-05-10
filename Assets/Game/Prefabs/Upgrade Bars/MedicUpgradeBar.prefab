@@ -570,7 +570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5505082307173756545}
   m_Layer: 0
-  m_Name: SuperTurretUpgradeBar
+  m_Name: MedicUpgradeBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,7 +585,7 @@ Transform:
   m_GameObject: {fileID: 5505082307173756544}
   m_LocalRotation: {x: 0.16023062, y: -0.68871343, z: -0.16023062, w: 0.68871343}
   m_LocalPosition: {x: -31.906256, y: 23.689184, z: -61}
-  m_LocalScale: {x: 0.6621, y: 0.6621, z: 0.6621}
+  m_LocalScale: {x: 0.7470474, y: 0.7470474, z: 0.7470474}
   m_Children:
   - {fileID: 5505082305309130721}
   - {fileID: 5505082305552726248}

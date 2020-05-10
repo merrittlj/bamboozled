@@ -168,12 +168,14 @@ public class Robot : MonoBehaviour
         {
 
             bullet1.Seek(target);
+            bullet1.thisDamage = 99999999999;
 
         }
         if (bullet2 != null)
         {
 
             bullet2.Seek(target);
+            bullet1.thisDamage = 99999999999;
 
         }
 
