@@ -27,7 +27,7 @@ public class BuildManager : MonoBehaviour
     public void BuildTurretOn(Node node)
     {
 
-        GameObject turretOb = (GameObject)Instantiate(TurretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
+        GameObject turretOb = (GameObject)Instantiate(TurretToBuild.prefab, node.GetBuildPosition(), TurretToBuild.prefab.transform.rotation);
         created = true;
 
     }

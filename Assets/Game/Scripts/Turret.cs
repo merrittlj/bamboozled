@@ -66,6 +66,8 @@ public class Turret : MonoBehaviour
     public float health;
     public float startHealth;
 
+    public float damage;
+
     private GameObject thiswayp;
 
     private void Awake()
@@ -127,7 +129,7 @@ public class Turret : MonoBehaviour
         if (gameObject.tag == "Medic")
         {
 
-            Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(0, 10, 0);
+            Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(3, 10, 0);
 
             thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
             thisHealthBar.transform.SetParent(healthBarHolder.transform);
@@ -139,6 +141,21 @@ public class Turret : MonoBehaviour
     }
     void Update()
     {
+
+        if (isTier1 == 1)
+        {
+
+            to2.SetActive(false);
+            td2.SetActive(false);
+
+        }
+        if (isTier1 == 2)
+        {
+
+            to1.SetActive(false);
+            td1.SetActive(false);
+
+        }
 
         thisHealthBar.transform.Find("HealthBar").GetComponent<Image>().fillAmount = health / startHealth;
 
@@ -155,8 +172,6 @@ public class Turret : MonoBehaviour
                     if (hit.transform.gameObject == to1 || hit.transform.gameObject == to2)
                     {
 
-                        td2.SetActive(false);
-                        td1.SetActive(false);
                             if (gameObject.tag == "Panda")
                             {
                                 if (isTier1 == 1)
@@ -165,8 +180,14 @@ public class Turret : MonoBehaviour
                                     if (shop.balance > 100)
                                     {
 
-                                        range += 100000;
-                                        shop.balance -= 100;
+                                        range -= 3;
+                                        fireRate += 1;
+                                        damage += 10;
+                                        Vector3 lTemp = transform.localScale;
+                                        lTemp.x *= 1.5f;
+                                        lTemp.z *= 1.5f;
+                                        transform.localScale = lTemp;
+                                        shop.balance -= 500;
                                         to1.SetActive(false);
                                         to2.SetActive(true);
                                         isTier1 = 2;
@@ -178,11 +199,13 @@ public class Turret : MonoBehaviour
                                 if (isTier1 == 2)
                                 {
 
-                                    if (shop.balance > 500)
+                                    if (shop.balance > 2000)
                                     {
+                                        range -= 6.5f;
+                                        fireRate += 2;
+                                        damage += 7;
                                         to2.SetActive(false);
-                                        shop.balance -= 500;
-                                        fireRate -= 1000000000000;
+                                        shop.balance -= 2000;
                                         return;
                                     }
 
@@ -341,44 +364,7 @@ public class Turret : MonoBehaviour
             {
 
                 bullet.Seek(target);
-
-            }
-
-        }
-
-        if (this.gameObject.tag == "Medic")
-        {
-
-            GameObject bulletGO = (GameObject)Instantiate(shop.medic.projectile, firePoint.position, firePoint.rotation);
-            BulletTest bullet = bulletGO.GetComponent<BulletTest>();
-
-            if (bullet != null)
-            {
-
-                bullet.Seek(target);
-
-            }
-
-        }
-
-        if (this.gameObject.tag == "Robot")
-        {
-
-            GameObject bulletGO1 = (GameObject)Instantiate(shop.robot.projectile, robotFirepoint1.position, robotFirepoint1.rotation);
-            GameObject bulletGO2 = (GameObject)Instantiate(shop.robot.projectile, robotFirepoint2.position, robotFirepoint2.rotation);
-            BulletTest bullet1 = bulletGO1.GetComponent<BulletTest>();
-            BulletTest bullet2 = bulletGO2.GetComponent<BulletTest>();
-
-            if (bullet1 != null)
-            {
-
-                bullet1.Seek(target);
-
-            }
-            if (bullet2 != null)
-            {
-
-                bullet2.Seek(target);
+                bullet.thisDamage = damage;
 
             }
 

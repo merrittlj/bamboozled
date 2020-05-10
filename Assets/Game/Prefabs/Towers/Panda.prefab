@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5046330755863649535}
   - component: {fileID: 633411512591597972}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: Panda
   m_TagString: Panda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 3168437257754760532, guid: e61cb1a903f71484db83f42395a819fe,
     type: 3}
+  thisHealthBar: {fileID: 0}
   endWaypoint: {fileID: 0}
   waypoint: {fileID: 5872397226297253412, guid: 690c3c440bdeb474e88d9e8e5f63b036,
     type: 3}
@@ -148,6 +149,8 @@ MonoBehaviour:
   isclick: 0
   offset: {x: 6, y: 1, z: -10}
   health: 100
+  startHealth: 0
+  damage: 33
 --- !u!65 &2589643915432292120
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -372,7 +375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5259262408733658247}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.001, y: 0.829, z: -0.014}
+  m_LocalPosition: {x: -0.001, y: 0.14, z: -0.014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4863766647374871787}

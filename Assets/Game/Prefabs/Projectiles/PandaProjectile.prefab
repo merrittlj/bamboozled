@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1190571347972574835}
   - component: {fileID: -2319405052778688795}
   m_Layer: 0
-  m_Name: SuperTurretProjectile
+  m_Name: PandaProjectile
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d349603ebfc3fdb42bb6894fbcc7a657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 267.16
+  thisDamage: 0
+  speed: 100
   ImpactEffect: {fileID: 3253384626949389815, guid: 3f16c6fd7bbaab24a8fb829ce593765a,
     type: 3}
 --- !u!54 &1190571347972574835

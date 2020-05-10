@@ -30,28 +30,15 @@ public class Medic : MonoBehaviour
         foreach (string tag in tagsToDisable)
         {
             towers = GameObject.FindGameObjectsWithTag(tag);
-            foreach (GameObject tower in towers)
-            {
 
-                float distance = Vector3.Distance(gameObject.transform.position, tower.transform.position);
-
-                if (distance < closestDistance)
-                {
-
-                    closestDistance = distance;
-
-                    closestTower = tower;
-
-                    lr.enabled = true;
-
-                }
-
-            }
+            findclosesttower();
 
         }
 
         if (closestTower != null)
         {
+
+            lr.enabled = true;
 
             lr.SetPosition(0, gameObject.transform.position + new Vector3(0, 2.5f, 0));
             lr.SetPosition(1, closestTower.transform.position + new Vector3(0, 2.5f, 0));
@@ -77,7 +64,13 @@ public class Medic : MonoBehaviour
         if (closestTower == null)
         {
 
+            closestDistance = 999;
+
             lr.enabled = false;
+
+            closestTower = null;
+
+            findclosesttower();
 
         }
 
@@ -88,6 +81,29 @@ public class Medic : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         iswaited = true;
+
+    }
+
+    void findclosesttower()
+    {
+
+        foreach (GameObject tower in towers)
+        {
+
+            float distance = Vector3.Distance(gameObject.transform.position, tower.transform.position);
+
+            if (distance < closestDistance)
+            {
+
+                closestDistance = distance;
+
+                closestTower = tower;
+
+                lr.enabled = true;
+
+            }
+
+        }
 
     }
 

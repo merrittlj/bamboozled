@@ -9,6 +9,8 @@ public class BulletTest : MonoBehaviour
 
     Shop shop;
 
+    public float thisDamage;
+
     public static BulletTest instance;
 
     private GameObject hitOb;
@@ -90,7 +92,7 @@ public class BulletTest : MonoBehaviour
 
         Destroy(effectIns, 2f);
         Destroy(gameObject);
-        hitOb.GetComponent<Enemy>().TakeDamage(33);
+        hitOb.GetComponent<Enemy>().TakeDamage(thisDamage);
 
     }
 
