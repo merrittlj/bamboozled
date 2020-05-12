@@ -14,6 +14,10 @@ public class NumberManager : MonoBehaviour
     public int ones;
     public int tens;
     public int hundreds;
+    public int thousands;
+    public int tenthousands;
+    public int hundredthousands;
+    public int millions;
 
     private GameObject zeromodel;
     private GameObject onemodel;
@@ -80,6 +84,13 @@ public class NumberManager : MonoBehaviour
             isdone = false;
 
         }
+        if (tens < 0)
+        {
+
+            tens += 10;
+            hundreds -= 1;
+
+        }
         if (tens >= 10)
         {
 
@@ -87,11 +98,67 @@ public class NumberManager : MonoBehaviour
             hundreds += 1;
 
         }
+        if (hundreds >= 10)
+        {
 
+            hundreds -= 10;
+            thousands += 1;
+
+        }
+        if (thousands >= 10)
+        {
+
+            thousands -= 10;
+            tenthousands += 1;
+
+        }
         if (ones < 10)
         {
 
             isdone = true;
+
+        }
+
+        if (hundreds < 0)
+        {
+
+            hundreds += 10;
+            thousands -= 1;
+
+        }
+        if (thousands < 0)
+        {
+
+            thousands += 10;
+            tenthousands -= 1;
+
+        }
+        if (tenthousands < 0)
+        {
+
+            tenthousands += 10;
+            hundredthousands -= 1;
+
+        }
+        if (tenthousands >= 10)
+        {
+
+            tenthousands -= 10;
+            hundredthousands += 1;
+
+        }
+        if (hundredthousands < 0)
+        {
+
+            hundredthousands += 10;
+            millions -= 1;
+
+        }
+        if (hundredthousands >= 10)
+        {
+
+            hundredthousands -= 10;
+            millions += 1;
 
         }
 
@@ -117,7 +184,34 @@ public class NumberManager : MonoBehaviour
 
                 hundreds -= 1;
                 amount -= 100;
-                Debug.Log(amount);
+
+            }
+            if (amount >= 1000)
+            {
+
+                thousands -= 1;
+                amount -= 1000;
+
+            }
+            if (amount >= 10000)
+            {
+
+                tenthousands -= 1;
+                amount -= 10000;
+
+            }
+            if (amount >= 100000)
+            {
+
+                hundredthousands -= 1;
+                amount -= 100000;
+
+            }
+            if (amount >= 1000000)
+            {
+
+                millions -= 1;
+                amount -= 1000000;
 
             }
             if (amount >= 10 && amount < 100)
@@ -162,6 +256,24 @@ public class NumberManager : MonoBehaviour
         {
 
             shownum(hundreds);
+
+        }
+        if (whatValue == "thousands")
+        {
+
+            shownum(thousands);
+
+        }
+        if (whatValue == "ten thousands")
+        {
+
+            shownum(tenthousands);
+
+        }
+        if (whatValue == "hundred thousands")
+        {
+
+            shownum(hundredthousands);
 
         }
 
