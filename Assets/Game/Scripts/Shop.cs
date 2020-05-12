@@ -8,6 +8,8 @@ public class Shop : MonoBehaviour
 
     BuildManager buildManager;
 
+    public int tens;
+
     [Header("Attributes")]
     public int balance;
 
@@ -26,6 +28,8 @@ public class Shop : MonoBehaviour
 
     Node node;
 
+    NumberManager numman;
+
     private bool waited;
 
     private void Awake()
@@ -39,10 +43,19 @@ public class Shop : MonoBehaviour
     {
         node = Node.instance;
         buildManager = BuildManager.instance;
+        numman = NumberManager.instance;
     }
 
     private void Update()
     {
+
+        if (tens >= 1)
+        {
+
+            Debug.Log(numman.gameObject.name);
+            tens -= 1;
+
+        }
 
         if (buildManager.created == true)
         {

@@ -8,6 +8,7 @@ public class BulletTest : MonoBehaviour
     Turret turret;
 
     Shop shop;
+    NumberManager numman;
 
     public float thisDamage;
 
@@ -42,6 +43,8 @@ public class BulletTest : MonoBehaviour
     {
 
         turret = Turret.instance;
+
+        numman = NumberManager.instance;
 
         if (target != null)
         {
@@ -88,7 +91,7 @@ public class BulletTest : MonoBehaviour
 
         GameObject effectIns = (GameObject)Instantiate(ImpactEffect, transform.position, transform.rotation);
 
-        shop.balance++;
+        numman.ones += 1;
 
         Destroy(effectIns, 2f);
         Destroy(gameObject);
