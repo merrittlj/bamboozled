@@ -91,7 +91,7 @@ public class BulletTest : MonoBehaviour
 
         GameObject effectIns = (GameObject)Instantiate(ImpactEffect, transform.position, transform.rotation);
 
-        numman.ones += 1;
+        shop.balance += 1;
 
         Destroy(effectIns, 2f);
         Destroy(gameObject);

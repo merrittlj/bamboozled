@@ -43,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
 
         }
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+        if (target != null && Vector3.Distance(transform.position, target.position) <= 0.4f)
         {
 
             GetNextWayPoint();

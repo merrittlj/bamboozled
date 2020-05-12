@@ -13,6 +13,7 @@ public class NumberManager : MonoBehaviour
 
     public int ones;
     public int tens;
+    public int hundreds;
 
     private GameObject zeromodel;
     private GameObject onemodel;
@@ -27,9 +28,14 @@ public class NumberManager : MonoBehaviour
 
     private int curBal;
 
-    private bool isdone;
+    [HideInInspector]
+    public bool isdone;
 
     private GameObject tensHolder;
+
+    private int doonce;
+
+    private int amount;
 
     private void Awake()
     {
@@ -74,6 +80,13 @@ public class NumberManager : MonoBehaviour
             isdone = false;
 
         }
+        if (tens >= 10)
+        {
+
+            tens -= 10;
+            hundreds += 1;
+
+        }
 
         if (ones < 10)
         {
@@ -85,31 +98,48 @@ public class NumberManager : MonoBehaviour
         if (isdone == true)
         {
 
-            if (curBal != shop.balance)
+            if (curBal != shop.balance && doonce == 0)
             {
 
-                int amount = curBal - shop.balance;
-                if (amount >= 10)
-                {
+                amount = curBal - shop.balance;
 
-                    tens -= 1;
-                    amount -= 10;
+                doonce = 1;
 
-                }
-                if (amount < 10 && amount != 0)
-                {
+            }
 
-                    ones -= amount;
-                    amount = 0;
+        }
 
-                }
+        if (doonce == 1)
+        {
 
-                if (amount == 0)
-                {
+            if (amount >= 100)
+            {
 
-                    curBal = shop.balance;
+                hundreds -= 1;
+                amount -= 100;
+                Debug.Log(amount);
 
-                }
+            }
+            if (amount >= 10 && amount < 100)
+            {
+
+                tens -= 1;
+                amount -= 10;
+
+            }
+            if (amount < 10 && amount != 0)
+            {
+
+                ones -= amount;
+                amount = 0;
+
+            }
+
+            if (amount == 0)
+            {
+
+                doonce = 0;
+                curBal = shop.balance;
 
             }
 
@@ -126,6 +156,12 @@ public class NumberManager : MonoBehaviour
         {
 
             shownum(ones);
+
+        }
+        if (whatValue == "hundreds")
+        {
+
+            shownum(hundreds);
 
         }
 

@@ -8,8 +8,6 @@ public class Shop : MonoBehaviour
 
     BuildManager buildManager;
 
-    public int tens;
-
     [Header("Attributes")]
     public int balance;
 
@@ -48,14 +46,6 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
-
-        if (tens >= 1)
-        {
-
-            Debug.Log(numman.gameObject.name);
-            tens -= 1;
-
-        }
 
         if (buildManager.created == true)
         {
@@ -162,24 +152,29 @@ public class Shop : MonoBehaviour
     public void SelectTower(string WhatTower)
     {
 
-        if (WhatTower == "Panda")
+        if (numman.isdone == true)
         {
 
-            SelectPanda();
+            if (WhatTower == "Panda")
+            {
 
-        }
+                SelectPanda();
 
-        if (WhatTower == "Medic")
-        {
+            }
 
-            SelectMedic();
+            if (WhatTower == "Medic")
+            {
 
-        }
+                SelectMedic();
 
-        if (WhatTower == "Robot")
-        {
+            }
 
-            SelectRobot();
+            if (WhatTower == "Robot")
+            {
+
+                SelectRobot();
+
+            }
 
         }
 
