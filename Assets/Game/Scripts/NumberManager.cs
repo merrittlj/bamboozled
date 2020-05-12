@@ -84,6 +84,41 @@ public class NumberManager : MonoBehaviour
             isdone = false;
 
         }
+        if (ones >= 100)
+        {
+
+            ones -= 100;
+            hundreds += 1;
+
+        }
+        if (ones >= 1000)
+        {
+
+            ones -= 1000;
+            thousands += 1;
+
+        }
+        if (ones >= 10000)
+        {
+
+            ones -= 10000;
+            tenthousands += 1;
+
+        }
+        if (ones >= 100000)
+        {
+
+            ones -= 100000;
+            hundredthousands += 1;
+
+        }
+        if (ones >= 1000000)
+        {
+
+            ones -= 1000000;
+            millions += 1;
+
+        }
         if (tens < 0)
         {
 
@@ -274,6 +309,12 @@ public class NumberManager : MonoBehaviour
         {
 
             shownum(hundredthousands);
+
+        }
+        if (whatValue == "millions")
+        {
+
+            shownum(millions);
 
         }
 
