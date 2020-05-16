@@ -276,7 +276,6 @@ public class Turret : MonoBehaviour
 
                                     health += 75;
                                     damage -= 15;
-                                    range += 20;
                                     td2.SetActive(false);
                                     shop.balance -= 2000;
                                     return;
