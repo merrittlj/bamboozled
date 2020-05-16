@@ -5,7 +5,20 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 
-    public int health = 100;
+    public static Health instance;
+
+    public float health = 100;
+
+    public float startHealth;
+
+    private void Awake()
+    {
+
+        instance = this;
+
+        startHealth = health;
+
+    }
 
     private void Update()
     {
