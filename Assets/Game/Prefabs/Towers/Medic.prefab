@@ -223,8 +223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closestTower: {fileID: 0}
-  closestDistance: 999
   lr: {fileID: 8037829835734280415}
+  power: 1
 --- !u!114 &8183401513693408214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +250,6 @@ MonoBehaviour:
   robotFirepoint2: {fileID: 0}
   range: 0
   fireRate: 0
-  enemyTag: Enemy
   PartToRotate: {fileID: 8380820288255836474, guid: b6566448cb09bd34a8d7f1df1d48e70d,
     type: 3}
   turnSpeed: 0
@@ -263,6 +262,7 @@ MonoBehaviour:
   offset: {x: 6, y: 1, z: -10}
   health: 100
   startHealth: 0
+  damage: 0
 --- !u!1 &5259262408733658247
 GameObject:
   m_ObjectHideFlags: 0

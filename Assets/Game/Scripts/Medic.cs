@@ -7,12 +7,14 @@ public class Medic : MonoBehaviour
 {
 
     public GameObject closestTower;
-    public float closestDistance;
+    private float closestDistance;
     public LineRenderer lr;
 
     GameObject[] towers;
 
     private bool iswaited;
+
+    public float power;
 
     private void Start()
     {
@@ -20,6 +22,8 @@ public class Medic : MonoBehaviour
         lr.enabled = false;
 
         StartCoroutine(heal());
+
+        closestDistance = Mathf.Infinity;
 
     }
 
@@ -48,7 +52,7 @@ public class Medic : MonoBehaviour
             if (iswaited == true)
             {
 
-                if (closestTower.GetComponent<Turret>().health < closestTower.GetComponent<Turret>().startHealth)
+                if (closestTower.GetComponent<Turret>().health < closestTower.GetComponent<Turret>().startHealth && closestTower != null)
                 {
 
                     closestTower.GetComponent<Turret>().health += 1;
@@ -64,7 +68,7 @@ public class Medic : MonoBehaviour
         if (closestTower == null)
         {
 
-            closestDistance = 999;
+            closestDistance = Mathf.Infinity;
 
             lr.enabled = false;
 
@@ -79,7 +83,7 @@ public class Medic : MonoBehaviour
     IEnumerator heal()
     {
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1 / power);
         iswaited = true;
 
     }

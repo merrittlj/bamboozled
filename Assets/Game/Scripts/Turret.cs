@@ -48,12 +48,12 @@ public class Turret : MonoBehaviour
     private float fireCountdown = 0f;
 
     [Header("Unity Setup Fields")]
-    public string enemyTag = "Enemy";
+    string[] enemyTag;
     public Transform PartToRotate;
     public float turnSpeed = 10f;
     public Transform firePoint;
 
-    
+
     public GameObject upgradeBar;
 
     [HideInInspector]
@@ -70,6 +70,12 @@ public class Turret : MonoBehaviour
 
     private GameObject thiswayp;
 
+    GameObject[] Enemies;
+
+    private float shortestDistance;
+    private GameObject nnearestEnemy;
+    private float distanceToEnemy;
+
     private void Awake()
     {
 
@@ -82,7 +88,7 @@ public class Turret : MonoBehaviour
     }
 
     void Start()
-     {
+    {
 
 
         thisOb = this.gameObject;
@@ -142,6 +148,19 @@ public class Turret : MonoBehaviour
     void Update()
     {
 
+        if (startHealth != health)
+        {
+
+
+            if (health > startHealth)
+            {
+
+                startHealth = health;
+
+            }
+
+        }
+
         if (isTier1 == 1)
         {
 
@@ -172,56 +191,22 @@ public class Turret : MonoBehaviour
                     if (hit.transform.gameObject == to1 || hit.transform.gameObject == to2)
                     {
 
-                            if (gameObject.tag == "Panda")
-                            {
-                                if (isTier1 == 1)
-                                {
-
-                                    if (shop.balance > 500)
-                                    {
-
-                                        range -= 3;
-                                        fireRate += 1;
-                                        damage += 10;
-                                        Vector3 lTemp = transform.localScale;
-                                        lTemp.x *= 1.5f;
-                                        lTemp.z *= 1.5f;
-                                        transform.localScale = lTemp;
-                                        shop.balance -= 500;
-                                        to1.SetActive(false);
-                                        to2.SetActive(true);
-                                        isTier1 = 2;
-                                        return;
-
-                                    }
-
-                            }
-                                if (isTier1 == 2)
-                                {
-
-                                    if (shop.balance > 2000)
-                                    {
-                                        range -= 6.5f;
-                                        fireRate += 2;
-                                        damage += 7;
-                                        to2.SetActive(false);
-                                        shop.balance -= 2000;
-                                        return;
-                                    }
-
-                                }
-
-                        }
-
-                        if (gameObject.tag == "Medic")
+                        if (gameObject.tag == "Panda")
                         {
                             if (isTier1 == 1)
                             {
 
-                                if (shop.balance > 1000)
+                                if (shop.balance > 500)
                                 {
 
-                                    shop.balance -= 1000;
+                                    range -= 3;
+                                    fireRate += 1;
+                                    damage += 10;
+                                    Vector3 lTemp = transform.localScale;
+                                    lTemp.x *= 1.5f;
+                                    lTemp.z *= 1.5f;
+                                    transform.localScale = lTemp;
+                                    shop.balance -= 500;
                                     to1.SetActive(false);
                                     to2.SetActive(true);
                                     isTier1 = 2;
@@ -233,10 +218,50 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 5000)
+                                if (shop.balance > 2000)
                                 {
+                                    range -= 6.5f;
+                                    fireRate += 2;
+                                    damage += 7;
                                     to2.SetActive(false);
-                                    shop.balance -= 5000;
+                                    shop.balance -= 2000;
+                                    return;
+                                }
+
+                            }
+
+                        }
+
+                        if (gameObject.tag == "Medic")
+                        {
+                            if (isTier1 == 1)
+                            {
+
+                                if (shop.balance > 700)
+                                {
+
+                                    gameObject.GetComponent<Medic>().power += 3;
+                                    health -= 15;
+                                    startHealth = health;
+                                    shop.balance -= 700;
+                                    to1.SetActive(false);
+                                    to2.SetActive(true);
+                                    isTier1 = 2;
+                                    return;
+
+                                }
+
+                            }
+                            if (isTier1 == 2)
+                            {
+
+                                if (shop.balance > 2500)
+                                {
+                                    gameObject.GetComponent<Medic>().power += 8;
+                                    health -= 25;
+                                    startHealth = health;
+                                    to2.SetActive(false);
+                                    shop.balance -= 2500;
                                     return;
                                 }
 
@@ -323,15 +348,15 @@ public class Turret : MonoBehaviour
             }
         }
         if (target == null)
-            {
+        {
 
-                return;
+            return;
 
-            }
+        }
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(PartToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        PartToRotate.rotation = Quaternion.Euler (0f, rotation.y, 0f);
+        PartToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
         if (fireCountdown <= 0f && target != null)
         {
@@ -348,37 +373,36 @@ public class Turret : MonoBehaviour
     public void UpdateTarget()
     {
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        shortestDistance = Mathf.Infinity;
+        nnearestEnemy = null;
 
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-
-        foreach (GameObject enemy in enemies)
+        string[] EnemyTags = { "Enemy", "ExplosiveEnemy", "BigEnemy" };
+        foreach (string tag in EnemyTags)
         {
 
-            float distanceToEnemy = Vector3.Distance (transform.position, enemy.transform.position);
+            Enemies = GameObject.FindGameObjectsWithTag(tag);
 
-            if (distanceToEnemy < shortestDistance)
+            foreach (GameObject enemy in Enemies)
             {
 
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+
+                if (distanceToEnemy < shortestDistance)
+                {
+
+                    shortestDistance = distanceToEnemy;
+                    nnearestEnemy = enemy;
+
+                }
 
             }
 
         }
 
-        if (nearestEnemy != null && shortestDistance <= range)
+        if (nnearestEnemy != null && shortestDistance <= range)
         {
 
-            target = nearestEnemy.transform;
-
-        }
-
-        else
-        {
-
-            target = null;
+            target = nnearestEnemy.transform;
 
         }
 
@@ -391,7 +415,7 @@ public class Turret : MonoBehaviour
         {
 
             GameObject bulletGO = (GameObject)Instantiate(shop.panda.projectile, firePoint.position, firePoint.rotation);
-            BulletTest bullet = bulletGO.GetComponent<BulletTest>();
+            Projectile bullet = bulletGO.GetComponent<Projectile>();
 
             if (bullet != null)
             {
@@ -427,14 +451,12 @@ public class Turret : MonoBehaviour
 
         health -= amount;
 
-        thisHealthBar.transform.Find("HealthBar").GetComponent<Image>().fillAmount = health / startHealth;
-
         if (health <= 0)
         {
 
             Destroy(thisUpGBAR);
             Destroy(thiswayp);
-            Destroy(thisHealthBar);
+            Destroy(thisHealthBar.gameObject);
             Destroy(gameObject);
 
 

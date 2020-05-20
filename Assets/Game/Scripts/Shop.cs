@@ -12,7 +12,6 @@ public class Shop : MonoBehaviour
     public int balance;
 
     [Header("Prefabs")]
-    public TextMeshProUGUI MoneyText;
     public TurretBlueprint turretPlaceHolder;
 
     [Header("TurretBlueprints")]
@@ -60,8 +59,6 @@ public class Shop : MonoBehaviour
             }
 
         }
-
-        MoneyText.text = balance.ToString();
 
 
         if (balance <= 0)

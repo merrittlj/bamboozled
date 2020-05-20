@@ -14,6 +14,8 @@ TagManager:
   - END
   - Robot
   - Medic
+  - ExplosiveEnemy
+  - BigEnemy
   layers:
   - Default
   - TransparentFX

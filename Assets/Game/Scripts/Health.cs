@@ -36,7 +36,7 @@ public class Health : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "ExplosiveEnemy" || collision.gameObject.tag == "BigEnemy")
         {
 
             health -= 1;

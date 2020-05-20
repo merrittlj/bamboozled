@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
+    public DestroyTurret destur;
+
     EnemyMovement enmove;
 
     public float health;
@@ -13,6 +15,7 @@ public class Enemy : MonoBehaviour
     {
 
         enmove = EnemyMovement.instance;
+        destur = DestroyTurret.instance;
 
     }
 
@@ -22,7 +25,7 @@ public class Enemy : MonoBehaviour
         if (health <= 1)
         {
 
-            Destroy(gameObject);
+           destur.Explode();
 
         }
 
@@ -31,9 +34,15 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
 
-        health -= amount;
+        if (gameObject.tag != "ExplosiveEnemy")
+        {
 
-        enmove.speed = health / 10;
+            health -= amount;
+
+            enmove.speed = health / 10;
+
+        }
 
     }
+
 }

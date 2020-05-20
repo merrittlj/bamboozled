@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 3584079466740449803}
   - component: {fileID: 387327781811776098}
   m_Layer: 0
-  m_Name: Enemy
-  m_TagString: Enemy
+  m_Name: BigEnemy
+  m_TagString: BigEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4048425223506156407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.55, y: 2.468, z: 5.28}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 34.55, y: 7.08, z: 5.28}
+  m_LocalScale: {x: 4.0092, y: 4.0092, z: 4.0092}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -109,8 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  explosionParticles: {fileID: 7604544062347849896, guid: 4bea8b82ae72af0479db67a2f026f218,
-    type: 3}
 --- !u!114 &809018006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e6cdf3ff494754dbadbecebefe1b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
 --- !u!54 &3584079466740449803
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waited: 0
   explosionPower: 0
+  nearbyTowers: []
   explosionParticles: {fileID: 7604544062347849896, guid: 4bea8b82ae72af0479db67a2f026f218,
     type: 3}
-  damage: 15
+  damage: 34

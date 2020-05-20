@@ -19259,8 +19259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2768b7a5a99cb4b8c999e96fd9bb01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balance: 1000000
-  MoneyText: {fileID: 0}
+  balance: 3000
   turretPlaceHolder:
     prefab: {fileID: 4013405327220321145, guid: bf312b1b48fcdb940a4b5ee55dcc2ccf,
       type: 3}
@@ -19271,13 +19270,13 @@ MonoBehaviour:
       type: 3}
     projectile: {fileID: 406644515298588094, guid: b97f935be76835149a3f34ed0f0ae49c,
       type: 3}
-    cost: 10
+    cost: 250
   medic:
     prefab: {fileID: 4952309916033217618, guid: 3587fc326aac1394e84e70f9d8b76ae9,
       type: 3}
     projectile: {fileID: 406644515298588094, guid: 92a49f2c45956b54382bfda4e43442f1,
       type: 3}
-    cost: 100
+    cost: 500
   robot:
     prefab: {fileID: 8329072479455381830, guid: 4e906d922edc15f41a6fcd9eb95ffa62,
       type: 3}
@@ -34497,6 +34496,24 @@ PrefabInstance:
       propertyPath: startButton
       value: 
       objectReference: {fileID: 2064883675}
+    - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
+        type: 3}
+      propertyPath: normalEnemy
+      value: 
+      objectReference: {fileID: 4048425223506156407, guid: d0687b9cd653cb042bd1a0e601c6667d,
+        type: 3}
+    - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
+        type: 3}
+      propertyPath: explosiveEnemy
+      value: 
+      objectReference: {fileID: 4048425223506156407, guid: a4c4ef370ce9d994999cbe857d2eda7a,
+        type: 3}
+    - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
+        type: 3}
+      propertyPath: bigEnemy
+      value: 
+      objectReference: {fileID: 4048425223506156407, guid: 31dc5e2a88ed6f54ab49118e8c00faa7,
+        type: 3}
     - target: {fileID: 4023383434241253452, guid: c7e061afa0ffd9340a7c560762651a90,
         type: 3}
       propertyPath: m_LocalPosition.x

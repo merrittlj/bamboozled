@@ -15,7 +15,7 @@ public class Robot : MonoBehaviour
     Waypoints wayp;
     Turret turret;
     Shop shop;
-    BulletTest bullet;
+    Projectile bullet;
 
     [Header("Attributes")]
     public int timeLeft = 10;
@@ -56,7 +56,7 @@ public class Robot : MonoBehaviour
         turret = Turret.instance;
         wayp = Waypoints.instance;
         shop = Shop.instance;
-        bullet = BulletTest.instance;
+        bullet = Projectile.instance;
 
         thisOb = this.gameObject;
         waypoint = GameObject.Find("Waypoints/Waypoint");
@@ -161,8 +161,8 @@ public class Robot : MonoBehaviour
 
         GameObject bulletGO1 = (GameObject)Instantiate(shop.robot.projectile, robotfirePoint1.transform.position, robotfirePoint1.transform.rotation);
         GameObject bulletGO2 = (GameObject)Instantiate(shop.robot.projectile, robotfirePoint2.transform.position, robotfirePoint2.transform.rotation);
-        BulletTest bullet1 = bulletGO1.GetComponent<BulletTest>();
-        BulletTest bullet2 = bulletGO2.GetComponent<BulletTest>();
+        Projectile bullet1 = bulletGO1.GetComponent<Projectile>();
+        Projectile bullet2 = bulletGO2.GetComponent<Projectile>();
 
         if (bullet1 != null)
         {

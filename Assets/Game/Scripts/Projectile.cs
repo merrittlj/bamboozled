@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletTest : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
 
     Turret turret;
@@ -12,7 +12,7 @@ public class BulletTest : MonoBehaviour
 
     public float thisDamage;
 
-    public static BulletTest instance;
+    public static Projectile instance;
 
     private GameObject hitOb;
 
@@ -76,11 +76,18 @@ public class BulletTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "BigEnemy")
         {
             hitOb = other.gameObject;
             HitTarget();
             return;
+
+        }
+
+        if (other.gameObject.tag == "ExplosiveEnemy")
+        {
+
+            other.gameObject.GetComponent<Enemy>().destur.Explode();
 
         }
 

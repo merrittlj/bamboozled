@@ -4,11 +4,28 @@ using UnityEngine;
 public class DestroyTurret : MonoBehaviour
 {
 
+    public static DestroyTurret instance;
+
     Turret turret;
 
     public bool waited;
 
     private GameObject touchob;
+
+    public float explosionPower;
+
+    public GameObject[] nearbyTowers;
+
+    public GameObject explosionParticles;
+
+    public float damage;
+
+    private void Awake()
+    {
+
+        instance = this;
+
+    }
 
     private void Start()
     {
@@ -58,6 +75,34 @@ public class DestroyTurret : MonoBehaviour
             }
 
         }
+
+        if (touchob != null)
+        {
+
+
+            if (gameObject.tag == "ExplosiveEnemy")
+            {
+
+                int howmany = 0;
+
+                if (touchob.gameObject != null)
+                {
+
+                    Explode();
+
+                    if (touchob.gameObject == null)
+                    {
+
+                        return;
+
+                    }
+
+                }
+
+            }
+
+        }
+
         if (touchob == null)
         {
 
@@ -87,6 +132,56 @@ public class DestroyTurret : MonoBehaviour
         enmove.enabled = false;
         yield return new WaitForSeconds(1);
         waited = true;
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+
+        Gizmos.color = Color.green;
+
+        Gizmos.DrawWireSphere(transform.position, explosionPower);
+
+    }
+
+    public void Explode()
+    {
+
+        int howmany = 0;
+
+        if (howmany == 0)
+        {
+
+            GameObject explosionEffect = (GameObject)Instantiate(explosionParticles, gameObject.transform.position, gameObject.transform.rotation);
+            Destroy(explosionEffect, 7f);
+            howmany++;
+
+        }
+        if (touchob != null)
+        {
+
+            touchob.gameObject.GetComponent<Turret>().TakeDamage(damage);
+
+        }
+        string[] tagsToDisable = { "Panda", "Robot", "Medic" };
+        foreach (string tag in tagsToDisable)
+        {
+            nearbyTowers = GameObject.FindGameObjectsWithTag(tag);
+
+            foreach (GameObject i in nearbyTowers)
+            {
+                float dis = Vector3.Distance(gameObject.transform.position, i.gameObject.transform.position);
+                if (dis <= explosionPower)
+                {
+
+                    i.gameObject.GetComponent<Turret>().TakeDamage(20);
+
+                }
+
+            }
+
+        }
+        Destroy(gameObject);
 
     }
 }
