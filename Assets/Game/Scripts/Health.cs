@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
 
     public static Health instance;
 
+    GameOverText gameovertext;
+
     public float health = 100;
 
     public float startHealth;
@@ -18,6 +20,8 @@ public class Health : MonoBehaviour
 
         startHealth = health;
 
+        gameovertext = GameOverText.instance;
+
     }
 
     private void Update()
@@ -28,6 +32,7 @@ public class Health : MonoBehaviour
 
             Destroy(gameObject);
             Debug.Log("GAME OVER");
+            gameovertext.isdone = true;
 
         }
 
@@ -36,10 +41,24 @@ public class Health : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "ExplosiveEnemy" || collision.gameObject.tag == "BigEnemy")
+        if (collision.gameObject.tag == "Enemy")
         {
 
             health -= 1;
+            Debug.Log("Health Left: " + health);
+
+        }
+        if (collision.gameObject.tag == "ExplosiveEnemy")
+        {
+
+            health -= 2;
+            Debug.Log("Health Left: " + health);
+
+        }
+        if (collision.gameObject.tag == "BigEnemy")
+        {
+
+            health -= 5;
             Debug.Log("Health Left: " + health);
 
         }

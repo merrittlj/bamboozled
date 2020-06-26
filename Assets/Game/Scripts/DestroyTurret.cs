@@ -8,6 +8,8 @@ public class DestroyTurret : MonoBehaviour
 
     Turret turret;
 
+    GameOverText gameovertext;
+
     public bool waited;
 
     private GameObject touchob;
@@ -31,6 +33,7 @@ public class DestroyTurret : MonoBehaviour
     {
 
         turret = Turret.instance;
+        gameovertext = GameOverText.instance;
 
         EnemyMovement enmove = GetComponent<EnemyMovement>();
 
@@ -130,7 +133,7 @@ public class DestroyTurret : MonoBehaviour
 
         EnemyMovement enmove = GetComponent<EnemyMovement>();
         enmove.enabled = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         waited = true;
 
     }
@@ -148,6 +151,8 @@ public class DestroyTurret : MonoBehaviour
     {
 
         int howmany = 0;
+
+        gameovertext.zombiesdied += 1;
 
         if (howmany == 0)
         {

@@ -10,6 +10,10 @@ public class EnemyMovement : MonoBehaviour
     private Transform target;
     private int wavepointIndex = 0;
 
+    float amount;
+
+    public Vector3 offset;
+
     public static EnemyMovement instance;
 
     private void Awake()
@@ -23,11 +27,15 @@ public class EnemyMovement : MonoBehaviour
         {
 
         target = Waypoints.points[0];
+        Vector3 dirwayy = target.transform.position;
 
-        }
+        transform.LookAt(dirwayy);
+
+    }
 
         void Update()
         {
+
         if (target == null)
         {
 
@@ -39,6 +47,7 @@ public class EnemyMovement : MonoBehaviour
         {
 
             Vector3 dir = target.position - gameObject.transform.position;
+
             transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
         }
@@ -64,6 +73,15 @@ public class EnemyMovement : MonoBehaviour
 
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
+
+        if (target != null)
+        {
+
+            Vector3 dirwayy = target.transform.position;
+
+            transform.LookAt(dirwayy);
+
+        }
 
     }
 

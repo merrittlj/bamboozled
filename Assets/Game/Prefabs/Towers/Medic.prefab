@@ -224,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closestTower: {fileID: 0}
   lr: {fileID: 8037829835734280415}
-  power: 1
+  power: 10
 --- !u!114 &8183401513693408214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +257,9 @@ MonoBehaviour:
     type: 3}
   upgradeBar: {fileID: 5505082307173756544, guid: 056f3bbcf02f9eb48b28453117ec1420,
     type: 3}
+  testupgradebar: {fileID: 5505082307173756544, guid: 056f3bbcf02f9eb48b28453117ec1420,
+    type: 3}
+  upgradepos: {fileID: 0}
   thisUpGBAR: {fileID: 0}
   isclick: 0
   offset: {x: 6, y: 1, z: -10}

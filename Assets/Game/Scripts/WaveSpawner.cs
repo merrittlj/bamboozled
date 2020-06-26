@@ -7,6 +7,7 @@ public class WaveSpawner : MonoBehaviour
 {
 
     BuildManager build;
+    Shop shop;
 
     [Header("Enemies")]
     public GameObject normalEnemy;
@@ -29,10 +30,13 @@ public class WaveSpawner : MonoBehaviour
     private bool isstarted = false;
     public GameObject startButton;
 
+    public GameObject[] spawnpoints;
+
     private void Start()
     {
 
         build = BuildManager.instance;
+        shop = Shop.instance;
 
         startButton.SetActive(false);
 
@@ -54,6 +58,7 @@ public class WaveSpawner : MonoBehaviour
         {
 
             wave++;
+            shop.balance += wave * 6;
             StartCoroutine(spawnWave());
             countDown = TimeBetweenWaves;
 
@@ -87,67 +92,28 @@ public class WaveSpawner : MonoBehaviour
     void spawnEnemy()
     {
 
-        int whichEnemy = Random.Range(1, 11);
+        float whichEnemy = Random.value;
 
-        if (whichEnemy == 1)
+        int whichSpawnPoint = Random.Range(0, 27);
+
+        SpawnPoint = spawnpoints[whichSpawnPoint].transform;
+
+        if (whichEnemy <= 0.10)
         {
 
-            Instantiate(normalEnemy, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            Instantiate(bigEnemy, SpawnPoint.transform.position, gameObject.transform.rotation);
 
         }
-        if (whichEnemy == 2)
+        if (whichEnemy <= 0.09)
         {
 
-            Instantiate(normalEnemy, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            Instantiate(explosiveEnemy, SpawnPoint.transform.position, gameObject.transform.rotation);
 
         }
-        if (whichEnemy == 3)
+        if (whichEnemy <= 0.81)
         {
 
-            Instantiate(normalEnemy, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-
-        }
-        if (whichEnemy == 4)
-        {
-
-            Instantiate(explosiveEnemy, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-
-        }
-
-        if (whichEnemy == 5)
-        {
-
-            Instantiate(normalEnemy, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-
-        }
-        if (whichEnemy == 6)
-        {
-
-            Instantiate(normalEnemy, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-
-        }
-        if (whichEnemy == 7)
-        {
-
-            Instantiate(normalEnemy, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-
-        }
-        if (whichEnemy == 8)
-        {
-
-            Instantiate(explosiveEnemy, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-
-        }
-        if (whichEnemy == 9)
-        {
-
-            Instantiate(normalEnemy, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-
-        }
-        if (whichEnemy == 10)
-        {
-
-            Instantiate(bigEnemy, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            Instantiate(normalEnemy, SpawnPoint.transform.position, gameObject.transform.rotation);
 
         }
 
@@ -157,7 +123,7 @@ public class WaveSpawner : MonoBehaviour
     {
 
         isstarted = true;
-        startButton.SetActive(false);
+        Destroy(startButton);
 
     }
 

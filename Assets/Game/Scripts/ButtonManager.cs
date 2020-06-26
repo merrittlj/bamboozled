@@ -18,4 +18,11 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("Tutorial");
 
     }
+    public void loadMenu()
+    {
+
+        SceneManager.LoadScene("Menu");
+
+    }
+
 }

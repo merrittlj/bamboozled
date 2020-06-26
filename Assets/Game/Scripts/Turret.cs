@@ -12,6 +12,7 @@ public class Turret : MonoBehaviour
     Waypoints wayp;
     Shop shop;
     Upgrade upg;
+    GameOverText gameovertext;
 
     [Header("Health Bar Stuff")]
     public Image healthBar;
@@ -55,6 +56,8 @@ public class Turret : MonoBehaviour
 
 
     public GameObject upgradeBar;
+    public GameObject testupgradebar;
+    public GameObject upgradepos;
 
     [HideInInspector]
     public GameObject thisUpGBAR;
@@ -84,6 +87,7 @@ public class Turret : MonoBehaviour
         wayp = Waypoints.instance;
         shop = Shop.instance;
         upg = Upgrade.instance;
+        gameovertext = GameOverText.instance;
 
     }
 
@@ -112,8 +116,11 @@ public class Turret : MonoBehaviour
         thiswayp = wayPoint1;
         wayp.CheckChild();
 
-        Vector3 desiredPosTurUp = gameObject.transform.position + offset;
-        thisUpGBAR = (GameObject)Instantiate(upgradeBar, desiredPosTurUp, upgradeBar.transform.rotation);
+        upgradepos = GameObject.Find("Scene/UpgradeBarpos");
+
+        //Vector3 desiredPosTurUp = gameObject.transform.position + offset;
+        Vector3 desiredPosTurUp = upgradepos.transform.position;
+        thisUpGBAR = (GameObject)Instantiate(testupgradebar, desiredPosTurUp, testupgradebar.transform.rotation);
         thisUpGBAR.SetActive(false);
 
         to1 = thisUpGBAR.transform.Find("UpgradeTurretTierOffense1").gameObject;
@@ -187,7 +194,12 @@ public class Turret : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    if (hit.transform.gameObject != gameObject)
+                    {
 
+                        thisUpGBAR.SetActive(false);
+
+                    }
                     if (hit.transform.gameObject == to1 || hit.transform.gameObject == to2)
                     {
 
@@ -220,7 +232,7 @@ public class Turret : MonoBehaviour
 
                                 if (shop.balance > 2000)
                                 {
-                                    range -= 6.5f;
+                                    range -= 5f;
                                     fireRate += 2;
                                     damage += 7;
                                     to2.SetActive(false);
@@ -240,7 +252,7 @@ public class Turret : MonoBehaviour
                                 if (shop.balance > 700)
                                 {
 
-                                    gameObject.GetComponent<Medic>().power += 3;
+                                    gameObject.GetComponent<Medic>().power += 30;
                                     health -= 15;
                                     startHealth = health;
                                     shop.balance -= 700;
@@ -255,9 +267,9 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 2500)
+                                if (shop.balance > 4000)
                                 {
-                                    gameObject.GetComponent<Medic>().power += 8;
+                                    gameObject.GetComponent<Medic>().power += 80;
                                     health -= 25;
                                     startHealth = health;
                                     to2.SetActive(false);
@@ -315,10 +327,12 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 1)
                             {
 
-                                if (shop.balance > 1000)
+                                if (shop.balance > 800)
                                 {
 
-                                    shop.balance -= 1000;
+                                    health += 50;
+                                    gameObject.GetComponent<Medic>().power -= 3;
+                                    shop.balance -= 800;
                                     td1.SetActive(false);
                                     td2.SetActive(true);
                                     isTier1 = 2;
@@ -330,10 +344,13 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 5000)
+                                if (shop.balance > 2000)
                                 {
+
+                                    health += 100;
+                                    gameObject.GetComponent<Medic>().power -= 4;
                                     td2.SetActive(false);
-                                    shop.balance -= 5000;
+                                    shop.balance -= 2000;
                                     return;
                                 }
 
@@ -453,6 +470,8 @@ public class Turret : MonoBehaviour
 
         if (health <= 0)
         {
+
+            gameovertext.pandasdied += 1;
 
             Destroy(thisUpGBAR);
             Destroy(thiswayp);

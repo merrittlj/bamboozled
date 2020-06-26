@@ -83,7 +83,7 @@ public class Medic : MonoBehaviour
     IEnumerator heal()
     {
 
-        yield return new WaitForSeconds(1 / power);
+        yield return new WaitForSeconds(10 / power);
         iswaited = true;
 
     }

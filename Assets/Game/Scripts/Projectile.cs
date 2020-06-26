@@ -28,7 +28,6 @@ public class Projectile : MonoBehaviour
     {
 
         instance = this;
-        shop = Shop.instance;
 
     }
 
@@ -45,6 +44,8 @@ public class Projectile : MonoBehaviour
         turret = Turret.instance;
 
         numman = NumberManager.instance;
+
+        shop = Shop.instance;
 
         if (target != null)
         {
