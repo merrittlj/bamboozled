@@ -94,23 +94,23 @@ public class WaveSpawner : MonoBehaviour
 
         float whichEnemy = Random.value;
 
-        int whichSpawnPoint = Random.Range(0, 27);
+        int whichSpawnPoint = Random.Range(0, spawnpoints.Length - 1);
 
         SpawnPoint = spawnpoints[whichSpawnPoint].transform;
 
-        if (whichEnemy <= 0.10)
+        if (Random.value <= 0.11)
         {
 
             Instantiate(bigEnemy, SpawnPoint.transform.position, gameObject.transform.rotation);
 
         }
-        if (whichEnemy <= 0.09)
+        if (Random.value <= 0.10)
         {
 
             Instantiate(explosiveEnemy, SpawnPoint.transform.position, gameObject.transform.rotation);
 
         }
-        if (whichEnemy <= 0.81)
+        if (Random.value <= 0.79)
         {
 
             Instantiate(normalEnemy, SpawnPoint.transform.position, gameObject.transform.rotation);

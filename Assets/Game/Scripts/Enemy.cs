@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
+    public static Enemy instance;
+
     public DestroyTurret destur;
 
     Shop shop;
@@ -15,6 +17,15 @@ public class Enemy : MonoBehaviour
     public float health;
 
     Animator anim;
+
+    public bool iseat;
+
+    private void Awake()
+    {
+
+        instance = this;
+
+    }
 
     private void Start()
     {
@@ -27,7 +38,7 @@ public class Enemy : MonoBehaviour
         if (gameObject.tag == "Enemy")
         {
 
-            GameObject animatorHolder = gameObject.transform.Find("zombie").gameObject;
+            GameObject animatorHolder = gameObject.transform.Find("zombie 1").gameObject;
 
             anim = animatorHolder.GetComponent<Animator>();
 
@@ -37,10 +48,18 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (anim != null)
+        if (anim != null && iseat == false)
+        {
+           // anim.ResetTrigger("Eat");
+            anim.Play("Walk");
+
+        }
+
+        if (iseat == true)
         {
 
-            anim.SetTrigger("Walk");
+            //anim.ResetTrigger("Walk");
+            anim.Play("Eat");
 
         }
 

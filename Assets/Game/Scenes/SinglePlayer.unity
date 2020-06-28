@@ -14983,7 +14983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &810597141
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39047,6 +39047,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
         type: 3}
+      propertyPath: enemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
+        type: 3}
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 0}
@@ -39190,6 +39195,42 @@ PrefabInstance:
       propertyPath: spawnpoints.Array.data[25]
       value: 
       objectReference: {fileID: 576106290}
+    - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
+        type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 4048425223506156407, guid: d0687b9cd653cb042bd1a0e601c6667d,
+        type: 3}
+    - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
+        type: 3}
+      propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 4048425223506156407, guid: 31dc5e2a88ed6f54ab49118e8c00faa7,
+        type: 3}
+    - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
+        type: 3}
+      propertyPath: enemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 4048425223506156407, guid: a4c4ef370ce9d994999cbe857d2eda7a,
+        type: 3}
+    - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
+        type: 3}
+      propertyPath: normalEnemy
+      value: 
+      objectReference: {fileID: 4048425223506156407, guid: d0687b9cd653cb042bd1a0e601c6667d,
+        type: 3}
+    - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
+        type: 3}
+      propertyPath: explosiveEnemy
+      value: 
+      objectReference: {fileID: 4048425223506156407, guid: a4c4ef370ce9d994999cbe857d2eda7a,
+        type: 3}
+    - target: {fileID: 4023383434241253453, guid: c7e061afa0ffd9340a7c560762651a90,
+        type: 3}
+      propertyPath: bigEnemy
+      value: 
+      objectReference: {fileID: 4048425223506156407, guid: 31dc5e2a88ed6f54ab49118e8c00faa7,
+        type: 3}
     - target: {fileID: 4023383434241253452, guid: c7e061afa0ffd9340a7c560762651a90,
         type: 3}
       propertyPath: m_LocalPosition.x

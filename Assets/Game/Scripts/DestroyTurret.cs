@@ -8,6 +8,8 @@ public class DestroyTurret : MonoBehaviour
 
     Turret turret;
 
+    Enemy enemy;
+
     GameOverText gameovertext;
 
     public bool waited;
@@ -34,6 +36,7 @@ public class DestroyTurret : MonoBehaviour
 
         turret = Turret.instance;
         gameovertext = GameOverText.instance;
+        enemy = Enemy.instance;
 
         EnemyMovement enmove = GetComponent<EnemyMovement>();
 
@@ -82,6 +85,7 @@ public class DestroyTurret : MonoBehaviour
         if (touchob != null)
         {
 
+            enemy.iseat = true;
 
             if (gameObject.tag == "ExplosiveEnemy")
             {
@@ -108,6 +112,8 @@ public class DestroyTurret : MonoBehaviour
 
         if (touchob == null)
         {
+
+            enemy.iseat = false;
 
             enmove.enabled = true;
 

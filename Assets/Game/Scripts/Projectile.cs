@@ -88,7 +88,12 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.tag == "ExplosiveEnemy")
         {
 
-            other.gameObject.GetComponent<Enemy>().destur.Explode();
+            if (other.gameObject != null)
+            {
+
+                other.gameObject.GetComponent<Enemy>().destur.Explode();
+
+            }
 
         }
 
