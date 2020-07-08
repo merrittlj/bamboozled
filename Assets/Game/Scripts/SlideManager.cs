@@ -10,6 +10,8 @@ public class SlideManager : MonoBehaviour
 
     public int curslide;
 
+    public Animator anim;
+
     private void Start()
     {
 
@@ -25,7 +27,7 @@ public class SlideManager : MonoBehaviour
         if (curslide > slides.Count - 1)
         {
 
-            SceneManager.LoadScene("Menu");
+            StartCoroutine(scenetransition());
 
         }
 
@@ -37,7 +39,7 @@ public class SlideManager : MonoBehaviour
             if (curslide > slides.Count)
             {
 
-                SceneManager.LoadScene("Menu");
+                StartCoroutine(scenetransition());
 
             }
 
@@ -62,4 +64,16 @@ public class SlideManager : MonoBehaviour
         }
 
     }
+
+    IEnumerator scenetransition()
+    {
+
+        anim.SetTrigger("End");
+
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene("Menu");
+
+    }
+
 }

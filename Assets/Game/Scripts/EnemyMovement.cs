@@ -16,6 +16,8 @@ public class EnemyMovement : MonoBehaviour
 
     public static EnemyMovement instance;
 
+    public GameObject bamboo;
+
     private void Awake()
     {
 
@@ -30,6 +32,8 @@ public class EnemyMovement : MonoBehaviour
         Vector3 dirwayy = target.transform.position;
 
         transform.LookAt(dirwayy);
+
+        bamboo = GameObject.Find("Scene/Bamboo");
 
     }
 
@@ -66,6 +70,8 @@ public class EnemyMovement : MonoBehaviour
         if (wavepointIndex >= Waypoints.points.Length - 1)
         {
 
+            Destroy(bamboo.gameObject.GetComponent<BambooHealth>().bambootogeteaten);
+            bamboo.gameObject.GetComponent<BambooHealth>().newbamboo = true;
             Destroy(gameObject);
             return;
 

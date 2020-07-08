@@ -16,6 +16,7 @@ TagManager:
   - Medic
   - ExplosiveEnemy
   - BigEnemy
+  - bamboo
   layers:
   - Default
   - TransparentFX

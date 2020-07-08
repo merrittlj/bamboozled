@@ -168,7 +168,7 @@ public class DestroyTurret : MonoBehaviour
             howmany++;
 
         }
-        if (touchob != null)
+        if (touchob != null && touchob.gameObject.GetComponent<Turret>() != null)
         {
 
             touchob.gameObject.GetComponent<Turret>().TakeDamage(damage);

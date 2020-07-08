@@ -194,7 +194,7 @@ public class Turret : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (hit.transform.gameObject != gameObject)
+                    if (hit.transform.gameObject != gameObject && hit.transform.tag != "UpgradeBar" && hit.transform.tag != "TierOffense" && hit.transform.tag != "TierDefense")
                     {
 
                         thisUpGBAR.SetActive(false);

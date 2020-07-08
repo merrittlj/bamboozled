@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
 
     public bool iseat;
 
+    public bool waited;
+
     private void Awake()
     {
 
@@ -35,31 +37,31 @@ public class Enemy : MonoBehaviour
         shop = Shop.instance;
         gameovertext = GameOverText.instance;
 
-        if (gameObject.tag == "Enemy")
-        {
+        GameObject animatorHolder = gameObject.transform.Find("zombie 1").gameObject;
 
-            GameObject animatorHolder = gameObject.transform.Find("zombie 1").gameObject;
+        anim = animatorHolder.GetComponent<Animator>();
 
-            anim = animatorHolder.GetComponent<Animator>();
-
-        }
+        waited = true;
 
     }
 
     private void Update()
     {
-        if (anim != null && iseat == false)
+        if (anim != null && iseat == false && waited == true)
         {
-           // anim.ResetTrigger("Eat");
+
             anim.Play("Walk");
+            waited = false;
+            StartCoroutine(wait1(17.458f / 10));
 
         }
 
-        if (iseat == true)
+        if (iseat == true && waited == true)
         {
 
-            //anim.ResetTrigger("Walk");
             anim.Play("Eat");
+            waited = false;
+            StartCoroutine(wait1(13.5f / 10));
 
         }
 
@@ -108,6 +110,26 @@ public class Enemy : MonoBehaviour
             health -= amount;
 
             enmove.speed = health / 10;
+
+        }
+
+    }
+
+    IEnumerator wait1(float time)
+    {
+
+        yield return new WaitForSeconds(time);
+        waited = true;
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+        if (gameObject.tag == "ExplosiveEnemy" && collision.gameObject.tag == "Bullet") 
+        {
+
+            destur.Explode();
 
         }
 

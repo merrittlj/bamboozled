@@ -5,23 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+
+    public Animator anim;
+
     public void LoadSinglePlayer()
     {
 
-        SceneManager.LoadScene("SinglePlayer");
+        StartCoroutine(LoadLevel("SinglePlayer"));
 
     }
 
     public void LoadTutorial()
     {
 
-        SceneManager.LoadScene("Tutorial");
+        StartCoroutine(LoadLevel("Tutorial"));
 
     }
     public void loadMenu()
     {
 
-        SceneManager.LoadScene("Menu");
+        StartCoroutine(LoadLevel("Menu"));
+
+    }
+
+    IEnumerator LoadLevel(string scene)
+    {
+
+        anim.SetTrigger("End");
+
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene(scene);
 
     }
 
