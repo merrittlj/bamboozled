@@ -19,6 +19,7 @@ TagManager:
   - bamboo
   - Farm
   - Knight
+  - sword
   layers:
   - Default
   - TransparentFX

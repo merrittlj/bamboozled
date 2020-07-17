@@ -24,6 +24,8 @@ public class DestroyTurret : MonoBehaviour
 
     public float damage;
 
+    private bool waitsworb;
+
     private void Awake()
     {
 
@@ -43,6 +45,8 @@ public class DestroyTurret : MonoBehaviour
         enmove.enabled = true;
 
         waited = false;
+
+        waitsworb = true;
 
     }
 
@@ -123,7 +127,7 @@ public class DestroyTurret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Panda" || other.gameObject.tag == "Medic" || other.gameObject.tag == "Robot" || other.gameObject.tag == "Farm" || touchob.transform.tag == "Knight")
+        if (other.gameObject.tag == "Panda" || other.gameObject.tag == "Medic" || other.gameObject.tag == "Robot" || other.gameObject.tag == "Farm" || other.gameObject.tag == "Knight")
         {
 
             StartCoroutine(wait1());
@@ -136,13 +140,6 @@ public class DestroyTurret : MonoBehaviour
         {
 
             Explode();
-
-        }
-
-        if (other.gameObject.tag == "sword")
-        {
-
-            gameObject.GetComponent<Enemy>().TakeDamage(other.gameObject.GetComponent<Swordd>().amount);
 
         } 
 
@@ -207,6 +204,29 @@ public class DestroyTurret : MonoBehaviour
 
         }
         Destroy(gameObject);
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+
+        if (other.gameObject.tag == "sword" && waitsworb == true)
+        {
+
+            print("hi");
+            gameObject.GetComponent<Enemy>().TakeDamage(other.gameObject.GetComponent<Swordd>().amount);
+            StartCoroutine(waitsword());
+
+        }
+
+    }
+
+    IEnumerator waitsword()
+    {
+
+        waitsworb = false;
+        yield return new WaitForSeconds(1);
+        waitsworb = true;
 
     }
 
