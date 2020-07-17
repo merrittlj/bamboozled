@@ -215,6 +215,7 @@ public class Turret : MonoBehaviour
                     {
 
                         thisUpGBAR.SetActive(false);
+                        rangecircle.SetActive(false);
 
                     }
                     if (hit.transform.gameObject == to1 || hit.transform.gameObject == to2)
@@ -231,10 +232,10 @@ public class Turret : MonoBehaviour
                                     range -= 3;
                                     fireRate += 1;
                                     damage += 10;
-                                    Vector3 lTemp = transform.localScale;
+                                    Vector3 lTemp = PartToRotate.localScale;
                                     lTemp.x *= 1.5f;
                                     lTemp.z *= 1.5f;
-                                    transform.localScale = lTemp;
+                                    PartToRotate.localScale = lTemp;
                                     shop.balance -= 500;
                                     to1.SetActive(false);
                                     to2.SetActive(true);
@@ -513,6 +514,7 @@ public class Turret : MonoBehaviour
 
 
         thisUpGBAR.SetActive(true);
+        rangecircle.SetActive(true);
         isclick = 1;
 
     }
