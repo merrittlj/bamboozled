@@ -55,7 +55,7 @@ public class DestroyTurret : MonoBehaviour
 
             if (touchob != null)
             {
-                if (touchob.transform.tag == "Panda" || touchob.transform.tag == "Medic" || touchob.transform.tag == "Robot")
+                if (touchob.transform.tag == "Panda" || touchob.transform.tag == "Medic" || touchob.transform.tag == "Robot" || touchob.transform.tag == "Farm")
                 {
 
                     enmove.enabled = false;
@@ -123,7 +123,7 @@ public class DestroyTurret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Panda" || other.gameObject.tag == "Medic" || other.gameObject.tag == "Robot")
+        if (other.gameObject.tag == "Panda" || other.gameObject.tag == "Medic" || other.gameObject.tag == "Robot" || other.gameObject.tag == "Farm")
         {
 
             StartCoroutine(wait1());
@@ -195,5 +195,18 @@ public class DestroyTurret : MonoBehaviour
         Destroy(gameObject);
 
     }
+
+    private void OnTriggerEnter(Collision collision)
+    {
+
+        if (gameObject.tag == "ExplosiveEnemy" && collision.gameObject.tag == "Bullet")
+        {
+
+            Explode();
+
+        }
+
+    }
+
 }
     

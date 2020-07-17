@@ -123,16 +123,4 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-        if (gameObject.tag == "ExplosiveEnemy" && collision.gameObject.tag == "Bullet") 
-        {
-
-            destur.Explode();
-
-        }
-
-    }
-
 }

@@ -17,6 +17,7 @@ TagManager:
   - ExplosiveEnemy
   - BigEnemy
   - bamboo
+  - Farm
   layers:
   - Default
   - TransparentFX

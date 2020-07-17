@@ -6,6 +6,8 @@ using TMPro;
 public class WaveSpawner : MonoBehaviour
 {
 
+    public static WaveSpawner instance;
+
     BuildManager build;
     Shop shop;
 
@@ -27,10 +29,17 @@ public class WaveSpawner : MonoBehaviour
     private float countDown = 2f;
     private int wave = 0;
 
-    private bool isstarted = false;
+    public bool isstarted = false;
     public GameObject startButton;
 
     public GameObject[] spawnpoints;
+
+    private void Awake()
+    {
+
+        instance = this;
+
+    }
 
     private void Start()
     {

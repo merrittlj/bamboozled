@@ -47,6 +47,11 @@ public class Turret : MonoBehaviour
     public float range = 15f;
     public float fireRate = 1f;
     private float fireCountdown = 0f;
+    public int isclick;
+
+    public Vector3 offset;
+
+    public float damage;
 
     [Header("Unity Setup Fields")]
     string[] enemyTag;
@@ -54,24 +59,23 @@ public class Turret : MonoBehaviour
     public float turnSpeed = 10f;
     public Transform firePoint;
 
-
+    [Header("Upgrade Stuff")]
     public GameObject upgradeBar;
     public GameObject testupgradebar;
     public GameObject upgradepos;
 
+    public GameObject rangecircle;
+
     [HideInInspector]
     public GameObject thisUpGBAR;
 
-    public int isclick;
-
-    public Vector3 offset;
-
+    [Header("Health Bar Stuff")]
     public float health;
     public float startHealth;
 
-    public float damage;
-
     private GameObject thiswayp;
+
+    [Header("Enemy Stuff")]
 
     GameObject[] Enemies;
 
@@ -150,10 +154,23 @@ public class Turret : MonoBehaviour
             startHealth = health;
 
         }
+        if (gameObject.tag == "Farm")
+        {
+
+            Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(3, 5, 0);
+
+            thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
+            thisHealthBar.transform.SetParent(healthBarHolder.transform);
+
+            startHealth = health;
+
+        }
 
     }
     void Update()
     {
+
+        rangecircle.transform.localScale = new Vector3(range / 1.5f, range / 1.5f, range / 1.5f);
 
         if (startHealth != health)
         {
@@ -275,6 +292,43 @@ public class Turret : MonoBehaviour
                                     to2.SetActive(false);
                                     shop.balance -= 2500;
                                     return;
+                                }
+
+                            }
+
+                        }
+
+                        if (gameObject.tag == "Farm")
+                        {
+                            if (isTier1 == 1)
+                            {
+
+                                if (shop.balance > 700)
+                                {
+
+                                    health -= 15;
+                                    startHealth = health;
+                                    shop.balance -= 700;
+                                    to1.SetActive(false);
+                                    to2.SetActive(true);
+                                    isTier1 = 2;
+                                    return;
+
+                                }
+
+                            }
+                            if (isTier1 == 2)
+                            {
+
+                                if (shop.balance > 4000)
+                                {
+
+                                    health -= 25;
+                                    startHealth = health;
+                                    to2.SetActive(false);
+                                    shop.balance -= 2500;
+                                    return;
+
                                 }
 
                             }

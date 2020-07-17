@@ -18,6 +18,7 @@ public class Shop : MonoBehaviour
     public TurretBlueprint panda;
     public TurretBlueprint medic;
     public TurretBlueprint robot;
+    public TurretBlueprint farm;
 
     private string turretSelected;
 
@@ -70,60 +71,14 @@ public class Shop : MonoBehaviour
 
     }
 
-    public void SelectPanda()
+    public void SelectTurb(TurretBlueprint turb)
     {
 
-            if (balance >= panda.cost)
-            {
-
-                balance -= panda.cost;
-                Debug.Log("Panda Selected");
-                buildManager.SelectTowerToBuild(panda);
-                return;
-
-            }
-
-            else
-            {
-
-                Debug.Log("Not enouth money!");
-                return;
-
-            }
-
-    }
-    public void SelectMedic()
-    {
-
-        if (balance >= medic.cost)
+        if (balance >= turb.cost)
         {
 
-                balance -= medic.cost;
-                Debug.Log("Medic Selected");
-                buildManager.SelectTowerToBuild(medic);
-                return;
-
-        }
-
-        else
-        {
-
-            Debug.Log("Not enouth money!");
-            return;
-
-        }
-
-    }
-    public void SelectRobot()
-    {
-
-        if (balance >= robot.cost)
-        {
-
-            balance -= robot.cost;
-            Debug.Log("Robot Selected");
-            buildManager.SelectTowerToBuild(robot);
-            turretSelected = "robot";
+            balance -= turb.cost;
+            buildManager.SelectTowerToBuild(turb);
             return;
 
         }
@@ -155,21 +110,28 @@ public class Shop : MonoBehaviour
             if (WhatTower == "Panda")
             {
 
-                SelectPanda();
+                SelectTurb(panda);
 
             }
 
             if (WhatTower == "Medic")
             {
 
-                SelectMedic();
+                SelectTurb(medic);
 
             }
 
             if (WhatTower == "Robot")
             {
 
-                SelectRobot();
+                SelectTurb(robot);
+
+            }
+
+            if (WhatTower == "Farm")
+            {
+
+                SelectTurb(farm);
 
             }
 
