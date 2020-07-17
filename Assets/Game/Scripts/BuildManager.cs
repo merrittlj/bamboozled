@@ -19,6 +19,8 @@ public class BuildManager : MonoBehaviour
     public GameObject pandaPrefab;
     public GameObject medicPrefab;
     public GameObject robotPrefab;
+    public GameObject farmPrefab;
+    public GameObject knightPrefab;
 
     public TurretBlueprint TurretToBuild;
 

@@ -132,45 +132,23 @@ public class Turret : MonoBehaviour
         td1 = thisUpGBAR.transform.Find("UpgradeTurretTierDefense1").gameObject;
         td2 = thisUpGBAR.transform.Find("UpgradeTurretTierDefense2").gameObject;
 
-        if (gameObject.tag == "Panda")
-        {
+        Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(3, 5, 0);
 
-            Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(3, 5, 0);
+        thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
+        thisHealthBar.transform.SetParent(healthBarHolder.transform);
 
-            thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
-            thisHealthBar.transform.SetParent(healthBarHolder.transform);
-
-            startHealth = health;
-
-        }
-        if (gameObject.tag == "Medic")
-        {
-
-            Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(3, 10, 0);
-
-            thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
-            thisHealthBar.transform.SetParent(healthBarHolder.transform);
-
-            startHealth = health;
-
-        }
-        if (gameObject.tag == "Farm")
-        {
-
-            Vector3 desiredPosHealthBar = gameObject.transform.position + new Vector3(3, 5, 0);
-
-            thisHealthBar = (Image)Instantiate(healthBar, desiredPosHealthBar, desiredRotOb.transform.rotation);
-            thisHealthBar.transform.SetParent(healthBarHolder.transform);
-
-            startHealth = health;
-
-        }
+        startHealth = health;
 
     }
     void Update()
     {
 
-        rangecircle.transform.localScale = new Vector3(range / 1.5f, range / 1.5f, range / 1.5f);
+        if (rangecircle != null)
+        {
+
+            rangecircle.transform.localScale = new Vector3(range / 1.5f, range / 1.5f, range / 1.5f);
+
+        }
 
         if (startHealth != health)
         {

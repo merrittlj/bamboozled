@@ -55,7 +55,7 @@ public class DestroyTurret : MonoBehaviour
 
             if (touchob != null)
             {
-                if (touchob.transform.tag == "Panda" || touchob.transform.tag == "Medic" || touchob.transform.tag == "Robot" || touchob.transform.tag == "Farm")
+                if (touchob.transform.tag == "Panda" || touchob.transform.tag == "Medic" || touchob.transform.tag == "Robot" || touchob.transform.tag == "Farm" || touchob.transform.tag == "Knight")
                 {
 
                     enmove.enabled = false;
@@ -123,7 +123,7 @@ public class DestroyTurret : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Panda" || other.gameObject.tag == "Medic" || other.gameObject.tag == "Robot" || other.gameObject.tag == "Farm")
+        if (other.gameObject.tag == "Panda" || other.gameObject.tag == "Medic" || other.gameObject.tag == "Robot" || other.gameObject.tag == "Farm" || touchob.transform.tag == "Knight")
         {
 
             StartCoroutine(wait1());
@@ -174,7 +174,7 @@ public class DestroyTurret : MonoBehaviour
             touchob.gameObject.GetComponent<Turret>().TakeDamage(damage);
 
         }
-        string[] tagsToDisable = { "Panda", "Robot", "Medic" };
+        string[] tagsToDisable = { "Panda", "Robot", "Medic", "Farm", "Knight"};
         foreach (string tag in tagsToDisable)
         {
             nearbyTowers = GameObject.FindGameObjectsWithTag(tag);

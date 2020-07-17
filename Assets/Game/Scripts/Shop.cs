@@ -19,6 +19,7 @@ public class Shop : MonoBehaviour
     public TurretBlueprint medic;
     public TurretBlueprint robot;
     public TurretBlueprint farm;
+    public TurretBlueprint knight;
 
     private string turretSelected;
 
@@ -132,6 +133,13 @@ public class Shop : MonoBehaviour
             {
 
                 SelectTurb(farm);
+
+            }
+
+            if (WhatTower == "Knight")
+            {
+
+                SelectTurb(knight);
 
             }
 

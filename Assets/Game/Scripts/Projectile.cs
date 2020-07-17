@@ -85,6 +85,14 @@ public class Projectile : MonoBehaviour
 
         }
 
+        if (other.gameObject.tag == "ExplosiveEnemy")
+        {
+
+            other.gameObject.GetComponent<DestroyTurret>().Explode();
+            return;
+
+        }
+
     }
 
     void HitTarget()

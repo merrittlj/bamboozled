@@ -30,7 +30,7 @@ public class Medic : MonoBehaviour
     private void Update()
     {
 
-        string[] tagsToDisable = { "Panda", "Robot"};
+        string[] tagsToDisable = { "Panda", "Robot", "Farm", "Knight"};
         foreach (string tag in tagsToDisable)
         {
             towers = GameObject.FindGameObjectsWithTag(tag);
