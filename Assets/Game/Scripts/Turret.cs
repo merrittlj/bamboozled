@@ -477,6 +477,13 @@ public class Turret : MonoBehaviour
 
         }
 
+        if (gameObject.tag == "Knight")
+        {
+
+            gameObject.GetComponent<Knight>().sword.GetComponent<Animator>().Play("swordswing");
+
+        }
+
     }
 
     private void OnDrawGizmosSelected()

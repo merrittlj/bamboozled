@@ -132,6 +132,20 @@ public class DestroyTurret : MonoBehaviour
 
         }
 
+        if (gameObject.tag == "ExplosiveEnemy" && other.gameObject.tag == "Bullet")
+        {
+
+            Explode();
+
+        }
+
+        if (other.gameObject.tag == "sword")
+        {
+
+            gameObject.GetComponent<Enemy>().TakeDamage(other.gameObject.GetComponent<Swordd>().amount);
+
+        } 
+
     }
 
     IEnumerator wait1()
@@ -193,18 +207,6 @@ public class DestroyTurret : MonoBehaviour
 
         }
         Destroy(gameObject);
-
-    }
-
-    private void OnTriggerEnter(Collision collision)
-    {
-
-        if (gameObject.tag == "ExplosiveEnemy" && collision.gameObject.tag == "Bullet")
-        {
-
-            Explode();
-
-        }
 
     }
 
