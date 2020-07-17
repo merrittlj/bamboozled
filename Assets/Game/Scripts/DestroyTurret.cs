@@ -196,7 +196,12 @@ public class DestroyTurret : MonoBehaviour
                 if (dis <= explosionPower)
                 {
 
-                    i.gameObject.GetComponent<Turret>().TakeDamage(20);
+                    if (i != null)
+                    {
+
+                        i.gameObject.GetComponent<Turret>().TakeDamage(20);
+
+                    }
 
                 }
 

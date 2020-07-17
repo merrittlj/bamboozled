@@ -143,6 +143,13 @@ public class Turret : MonoBehaviour
     void Update()
     {
 
+        if (gameObject.tag == "Farm" || gameObject.tag == "Robot" || gameObject.tag == "Medic")
+        {
+
+            rangecircle = null;
+
+        }
+
         if (rangecircle != null)
         {
 
@@ -193,7 +200,12 @@ public class Turret : MonoBehaviour
                     {
 
                         thisUpGBAR.SetActive(false);
-                        rangecircle.SetActive(false);
+                        if (rangecircle != null)
+                        {
+
+                            rangecircle.SetActive(false);
+
+                        }
 
                     }
                     if (hit.transform.gameObject == to1 || hit.transform.gameObject == to2)
@@ -282,12 +294,13 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 1)
                             {
 
-                                if (shop.balance > 700)
+                                if (shop.balance > 500)
                                 {
 
-                                    health -= 15;
+                                    gameObject.GetComponent<Farm>().amount += 7;
+                                    health -= 75;
                                     startHealth = health;
-                                    shop.balance -= 700;
+                                    shop.balance -= 500;
                                     to1.SetActive(false);
                                     to2.SetActive(true);
                                     isTier1 = 2;
@@ -299,13 +312,14 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 4000)
+                                if (shop.balance > 2000)
                                 {
 
-                                    health -= 25;
+                                    gameObject.GetComponent<Farm>().amount += 20;
+                                    health -= 100;
+                                    shop.balance -= 2000;
                                     startHealth = health;
                                     to2.SetActive(false);
-                                    shop.balance -= 2500;
                                     return;
 
                                 }
@@ -382,6 +396,42 @@ public class Turret : MonoBehaviour
 
                                     health += 100;
                                     gameObject.GetComponent<Medic>().power -= 4;
+                                    td2.SetActive(false);
+                                    shop.balance -= 2000;
+                                    return;
+                                }
+
+                            }
+
+                        }
+
+                        if (gameObject.tag == "Farm")
+                        {
+                            if (isTier1 == 1)
+                            {
+
+                                if (shop.balance > 750)
+                                {
+
+                                    health += 100;
+                                    gameObject.GetComponent<Farm>().amount -= 5;
+                                    shop.balance -= 750;
+                                    td1.SetActive(false);
+                                    td2.SetActive(true);
+                                    isTier1 = 2;
+                                    return;
+
+                                }
+
+                            }
+                            if (isTier1 == 2)
+                            {
+
+                                if (shop.balance > 2000)
+                                {
+
+                                    health += 250;
+                                    gameObject.GetComponent<Farm>().amount -= 7;
                                     td2.SetActive(false);
                                     shop.balance -= 2000;
                                     return;
@@ -499,7 +549,13 @@ public class Turret : MonoBehaviour
 
 
         thisUpGBAR.SetActive(true);
-        rangecircle.SetActive(true);
+        if (rangecircle != null)
+        {
+
+            rangecircle.SetActive(true);
+
+        }
+
         isclick = 1;
 
     }
