@@ -27162,10 +27162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2768b7a5a99cb4b8c999e96fd9bb01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balance: 1000
+  balance: 1500
   turretPlaceHolder:
-    prefab: {fileID: 4013405327220321145, guid: bf312b1b48fcdb940a4b5ee55dcc2ccf,
-      type: 3}
+    prefab: {fileID: 0}
     projectile: {fileID: 0}
     cost: 0
   panda:

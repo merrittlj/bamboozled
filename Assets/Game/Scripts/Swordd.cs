@@ -18,4 +18,17 @@ public class Swordd : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "ExplosiveEnemy" || other.gameObject.tag == "BigEnemy")
+        {
+
+            other.gameObject.GetComponent<Enemy>().TakeDamage(amount);
+
+        }
+
+    }
+
 }

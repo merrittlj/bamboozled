@@ -21,7 +21,6 @@ public class Knight : MonoBehaviour
     void Update()
     {
 
-        sword.transform.localScale = new Vector3(turret.range / 1.4f, turret.range / 1.4f, turret.range / 1.4f);
 
     }
 }

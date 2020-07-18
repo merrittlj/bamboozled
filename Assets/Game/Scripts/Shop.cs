@@ -62,14 +62,6 @@ public class Shop : MonoBehaviour
 
         }
 
-
-        if (balance <= 0)
-        {
-
-            Debug.Log("No money left!");
-
-        }
-
     }
 
     public void SelectTurb(TurretBlueprint turb)

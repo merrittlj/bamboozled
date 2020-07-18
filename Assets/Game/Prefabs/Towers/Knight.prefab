@@ -103,8 +103,8 @@ MonoBehaviour:
   thisOb: {fileID: 0}
   robotFirepoint1: {fileID: 0}
   robotFirepoint2: {fileID: 0}
-  range: 7
-  fireRate: 0
+  range: 12
+  fireRate: 1
   isclick: 0
   offset: {x: 6, y: 1, z: -10}
   damage: 0
@@ -112,9 +112,9 @@ MonoBehaviour:
   turnSpeed: 10
   firePoint: {fileID: 8327480142965867478, guid: b6566448cb09bd34a8d7f1df1d48e70d,
     type: 3}
-  upgradeBar: {fileID: 4838131018233384408, guid: fb40554a7bff3274fbb92855dd697f73,
+  upgradeBar: {fileID: 2033966204128481436, guid: 3e44e687969a56a40bb1f922befdb854,
     type: 3}
-  testupgradebar: {fileID: 4838131018233384408, guid: fb40554a7bff3274fbb92855dd697f73,
+  testupgradebar: {fileID: 2033966204128481436, guid: 3e44e687969a56a40bb1f922befdb854,
     type: 3}
   upgradepos: {fileID: 0}
   rangecircle: {fileID: 1958458359550725876}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0dda414920446468aa5fdc9008fb20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 1588903146977181210}
+  sword: {fileID: 3197493353293565750}
 --- !u!65 &5423202364524737985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ Transform:
   m_Children:
   - {fileID: 3651176423628481343}
   - {fileID: 3347436445830993032}
-  - {fileID: 6805887025290445752}
+  - {fileID: 3120885822278350095}
   m_Father: {fileID: 6933657383951538991}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -208,12 +208,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588903146977181210}
-  m_LocalRotation: {x: 0.49991274, y: -0.49991274, z: 0.50008726, w: 0.50008726}
-  m_LocalPosition: {x: 0.388, y: -0.758, z: 1.197}
-  m_LocalScale: {x: 5.5831327, y: 6.4873376, z: 6.4873376}
+  m_LocalRotation: {x: 0.49991277, y: -0.49991277, z: 0.50008726, w: 0.50008726}
+  m_LocalPosition: {x: -0.034387525, y: -0.11592251, z: 0.58962333}
+  m_LocalScale: {x: 5.5831738, y: 6.4873977, z: 6.4873686}
   m_Children: []
-  m_Father: {fileID: 3851726857662751187}
-  m_RootOrder: 2
+  m_Father: {fileID: 3120885822278350095}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 89.98, y: 0, z: 90}
 --- !u!212 &5389354238488527245
 SpriteRenderer:
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5fcc33e9b26da44ad724e5e5da96c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 10
+  amount: 25
 --- !u!65 &57905276288493874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -521,3 +521,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3197493353293565750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3120885822278350095}
+  - component: {fileID: 1649333692021713074}
+  m_Layer: 0
+  m_Name: sword
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3120885822278350095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197493353293565750}
+  m_LocalRotation: {x: -0, y: -0, z: -0.000000014901159, w: 1}
+  m_LocalPosition: {x: 0.422, y: -0.6420766, z: 0.737}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6805887025290445752}
+  m_Father: {fileID: 3851726857662751187}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1649333692021713074
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197493353293565750}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6a406f8e76b15d7449c668bf21d26065, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -13,6 +13,7 @@ public class Turret : MonoBehaviour
     Shop shop;
     Upgrade upg;
     GameOverText gameovertext;
+    DestroyTurret destur;
 
     [Header("Health Bar Stuff")]
     public Image healthBar;
@@ -66,6 +67,10 @@ public class Turret : MonoBehaviour
 
     public GameObject rangecircle;
 
+    private bool waitsworb;
+
+    private float swingtime = 1;
+
     [HideInInspector]
     public GameObject thisUpGBAR;
 
@@ -92,6 +97,8 @@ public class Turret : MonoBehaviour
         shop = Shop.instance;
         upg = Upgrade.instance;
         gameovertext = GameOverText.instance;
+
+        destur = DestroyTurret.instance;
 
     }
 
@@ -216,7 +223,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 1)
                             {
 
-                                if (shop.balance > 500)
+                                if (shop.balance >= 500)
                                 {
 
                                     range -= 3;
@@ -238,7 +245,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 2000)
+                                if (shop.balance >= 2000)
                                 {
                                     range -= 5f;
                                     fireRate += 2;
@@ -257,7 +264,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 1)
                             {
 
-                                if (shop.balance > 700)
+                                if (shop.balance >= 700)
                                 {
 
                                     gameObject.GetComponent<Medic>().power += 30;
@@ -275,7 +282,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 4000)
+                                if (shop.balance >= 4000)
                                 {
                                     gameObject.GetComponent<Medic>().power += 80;
                                     health -= 25;
@@ -294,7 +301,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 1)
                             {
 
-                                if (shop.balance > 500)
+                                if (shop.balance >= 500)
                                 {
 
                                     gameObject.GetComponent<Farm>().amount += 7;
@@ -312,7 +319,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 2000)
+                                if (shop.balance >= 2000)
                                 {
 
                                     gameObject.GetComponent<Farm>().amount += 20;
@@ -322,6 +329,43 @@ public class Turret : MonoBehaviour
                                     to2.SetActive(false);
                                     return;
 
+                                }
+
+                            }
+
+                        }
+                        if (gameObject.tag == "Knight")
+                        {
+                            if (isTier1 == 1)
+                            {
+
+                                if (shop.balance >= 750)
+                                {
+
+                                    swingtime = 0.5f;
+                                    health -= 100;
+                                    startHealth = health;
+                                    shop.balance -= 750;
+                                    to1.SetActive(false);
+                                    to2.SetActive(true);
+                                    isTier1 = 2;
+                                    return;
+
+                                }
+
+                            }
+                            if (isTier1 == 2)
+                            {
+
+                                if (shop.balance >= 2000)
+                                {
+
+                                    swingtime = 0.25f;
+                                    health -= 200;
+                                    startHealth = health;
+                                    to2.SetActive(false);
+                                    shop.balance -= 2000;
+                                    return;
                                 }
 
                             }
@@ -337,7 +381,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 1)
                             {
 
-                                if (shop.balance > 500)
+                                if (shop.balance >= 500)
                                 {
 
                                     health += 25;
@@ -355,7 +399,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 2000)
+                                if (shop.balance >= 2000)
                                 {
 
                                     health += 75;
@@ -374,7 +418,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 1)
                             {
 
-                                if (shop.balance > 800)
+                                if (shop.balance >= 800)
                                 {
 
                                     health += 50;
@@ -391,7 +435,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 2000)
+                                if (shop.balance >= 2000)
                                 {
 
                                     health += 100;
@@ -410,7 +454,7 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 1)
                             {
 
-                                if (shop.balance > 750)
+                                if (shop.balance >= 750)
                                 {
 
                                     health += 100;
@@ -427,13 +471,49 @@ public class Turret : MonoBehaviour
                             if (isTier1 == 2)
                             {
 
-                                if (shop.balance > 2000)
+                                if (shop.balance >= 2000)
                                 {
 
                                     health += 250;
                                     gameObject.GetComponent<Farm>().amount -= 7;
                                     td2.SetActive(false);
                                     shop.balance -= 2000;
+                                    return;
+                                }
+
+                            }
+
+                        }
+
+                        if (gameObject.tag == "Knight")
+                        {
+                            if (isTier1 == 1)
+                            {
+
+                                if (shop.balance >= 750)
+                                {
+
+                                    swingtime = 1.5f;
+                                    gameObject.GetComponent<Knight>().sword.transform.Find("pixil-frame-0 (2)").gameObject.GetComponent<Swordd>().amount += 20;
+                                    shop.balance -= 750;
+                                    td1.SetActive(false);
+                                    td2.SetActive(true);
+                                    isTier1 = 2;
+                                    return;
+
+                                }
+
+                            }
+                            if (isTier1 == 2)
+                            {
+
+                                if (shop.balance >= 2500)
+                                {
+
+                                    swingtime = 2.5f;
+                                    gameObject.GetComponent<Knight>().sword.transform.Find("pixil-frame-0 (2)").gameObject.GetComponent<Swordd>().amount += 50;
+                                    td2.SetActive(false);
+                                    shop.balance -= 2500;
                                     return;
                                 }
 
@@ -467,6 +547,13 @@ public class Turret : MonoBehaviour
         }
 
         fireCountdown -= Time.deltaTime;
+
+        if (waitsworb == true)
+        {
+
+            StartCoroutine(waitsword());
+
+        }
 
     }
 
@@ -530,7 +617,7 @@ public class Turret : MonoBehaviour
         if (gameObject.tag == "Knight")
         {
 
-            gameObject.GetComponent<Knight>().sword.GetComponent<Animator>().Play("swordswing");
+            gameObject.GetComponent<Knight>().sword.gameObject.GetComponent<Animator>().Play("swordswing1");
 
         }
 
@@ -577,6 +664,15 @@ public class Turret : MonoBehaviour
 
 
         }
+
+    }
+
+    IEnumerator waitsword()
+    {
+
+        waitsworb = false;
+        yield return new WaitForSeconds(swingtime);
+        waitsworb = true;
 
     }
 
