@@ -148,8 +148,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5029841914832976725}
-  - component: {fileID: 4903577755538359446}
-  - component: {fileID: 3878467679625741727}
   - component: {fileID: 1503269342453797388}
   - component: {fileID: 8152861122518049259}
   - component: {fileID: 6814469874816785011}
@@ -176,46 +174,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4903577755538359446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8329072479455381830}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d80e36834ba94904588012c185f0baa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  endWaypoint: {fileID: 0}
-  waypoint: {fileID: 5872397226297253412, guid: 690c3c440bdeb474e88d9e8e5f63b036,
-    type: 3}
-  waypointParent: {fileID: 6159694603321768039, guid: 1024d804b122e2b49af312539b4108b4,
-    type: 3}
-  thisOb: {fileID: 0}
-  offset: {x: 0, y: 2, z: 0}
-  robotFirepoint1: {fileID: 4953339442183012034}
-  robotFirepoint2: {fileID: 8564003666567812929}
-  range: 300
-  fireRate: 3.4028235e+38
-  enemyTag: Enemy
-  PartToRotate: {fileID: 4855526143203621934}
-  turnSpeed: 5000
-  firePoint: {fileID: 4953339442183012034}
---- !u!114 &3878467679625741727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8329072479455381830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d09ba0fe13afa48860c7aa0cc6052a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touch: 0
 --- !u!65 &1503269342453797388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -257,8 +215,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3af8bcc5439ccb4597f54bb96885a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 15
+  robotfirePoint1: {fileID: 7524818881355646971}
+  robotfirePoint2: {fileID: 3926565053882202575}
+  timeLeft: 10
   activated: 0
+  thiswaypoint: {fileID: 0}
+  howmanytime: 0
+  batteryBar: {fileID: 3168437257754760532, guid: 474edfb4c37e6e949be562271969d2f9,
+    type: 3}
+  thisBatteryBar: {fileID: 0}
+  battery: 10
+  health: 1
 --- !u!114 &7945076909116036476
 MonoBehaviour:
   m_ObjectHideFlags: 0

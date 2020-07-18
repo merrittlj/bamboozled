@@ -45,7 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b6bea04670754468315ad0e0796b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4048425223506156403, guid: d0687b9cd653cb042bd1a0e601c6667d,
+  normalEnemy: {fileID: 4048425223506156407, guid: d0687b9cd653cb042bd1a0e601c6667d,
+    type: 3}
+  explosiveEnemy: {fileID: 4048425223506156407, guid: a4c4ef370ce9d994999cbe857d2eda7a,
+    type: 3}
+  bigEnemy: {fileID: 4048425223506156407, guid: 31dc5e2a88ed6f54ab49118e8c00faa7,
     type: 3}
   SpawnPoint: {fileID: 0}
   waveSpawnerCountdown: {fileID: 0}
@@ -53,6 +57,33 @@ MonoBehaviour:
   TimeBetweenWaves: 5.5
   waitTime: 0.5
   startButton: {fileID: 0}
+  spawnpoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &4023383434241253443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,9 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   created: 0
-  standardTurretPrefab: {fileID: 4952309916033217618, guid: b6566448cb09bd34a8d7f1df1d48e70d,
+  pandaPrefab: {fileID: 4952309916033217618, guid: b6566448cb09bd34a8d7f1df1d48e70d,
     type: 3}
-  superTurretPrefab: {fileID: 4952309916033217618, guid: 3587fc326aac1394e84e70f9d8b76ae9,
+  medicPrefab: {fileID: 4952309916033217618, guid: 3587fc326aac1394e84e70f9d8b76ae9,
     type: 3}
   robotPrefab: {fileID: 8329072479455381830, guid: 4e906d922edc15f41a6fcd9eb95ffa62,
     type: 3}

@@ -13,6 +13,13 @@ TagManager:
   - TierDefense
   - END
   - Robot
+  - Medic
+  - ExplosiveEnemy
+  - BigEnemy
+  - bamboo
+  - Farm
+  - Knight
+  - sword
   layers:
   - Default
   - TransparentFX

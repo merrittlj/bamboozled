@@ -19,6 +19,8 @@ public class Node : MonoBehaviour
     public Material mat;
     public Material startMat;
 
+    private bool isBuiltOn;
+
 
     private void Awake()
     {
@@ -52,7 +54,13 @@ public class Node : MonoBehaviour
 
         }
 
-        buildmanager.BuildTurretOn(this);
+        if (isBuiltOn == false)
+        {
+
+            buildmanager.BuildTurretOn(this);
+            isBuiltOn = true;
+
+        }
 
     }
 

@@ -10,20 +10,53 @@ public class EnemyMovement : MonoBehaviour
     private Transform target;
     private int wavepointIndex = 0;
 
-        void Start()
+    float amount;
+
+    public Vector3 offset;
+
+    public static EnemyMovement instance;
+
+    public GameObject bamboo;
+
+    private void Awake()
+    {
+
+        instance = this;
+
+    }
+
+    void Start()
         {
 
         target = Waypoints.points[0];
+        Vector3 dirwayy = target.transform.position;
 
-        }
+        transform.LookAt(dirwayy);
+
+        bamboo = GameObject.Find("Scene/Bamboo");
+
+    }
 
         void Update()
         {
 
-        Vector3 dir = target.position - gameObject.transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        if (target == null)
+        {
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+            GetNextWayPoint();
+
+        }
+
+        if (target != null)
+        {
+
+            Vector3 dir = target.position - gameObject.transform.position;
+
+            transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+
+        }
+
+        if (target != null && Vector3.Distance(transform.position, target.position) <= 0.4f)
         {
 
             GetNextWayPoint();
@@ -37,6 +70,8 @@ public class EnemyMovement : MonoBehaviour
         if (wavepointIndex >= Waypoints.points.Length - 1)
         {
 
+            Destroy(bamboo.gameObject.GetComponent<BambooHealth>().bambootogeteaten);
+            bamboo.gameObject.GetComponent<BambooHealth>().newbamboo = true;
             Destroy(gameObject);
             return;
 
@@ -44,6 +79,15 @@ public class EnemyMovement : MonoBehaviour
 
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
+
+        if (target != null)
+        {
+
+            Vector3 dirwayy = target.transform.position;
+
+            transform.LookAt(dirwayy);
+
+        }
 
     }
 

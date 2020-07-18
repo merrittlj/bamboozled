@@ -6,10 +6,17 @@ using TMPro;
 public class WaveSpawner : MonoBehaviour
 {
 
+    public static WaveSpawner instance;
+
     BuildManager build;
+    Shop shop;
+
+    [Header("Enemies")]
+    public GameObject normalEnemy;
+    public GameObject explosiveEnemy;
+    public GameObject bigEnemy;
 
     [Header("Prefabs")]
-    public Transform enemyPrefab;
     public Transform SpawnPoint;
     public TextMeshProUGUI waveSpawnerCountdown;
     public TextMeshProUGUI waveNumber;
@@ -22,13 +29,23 @@ public class WaveSpawner : MonoBehaviour
     private float countDown = 2f;
     private int wave = 0;
 
-    private bool isstarted = false;
+    public bool isstarted = false;
     public GameObject startButton;
+
+    public GameObject[] spawnpoints;
+
+    private void Awake()
+    {
+
+        instance = this;
+
+    }
 
     private void Start()
     {
 
         build = BuildManager.instance;
+        shop = Shop.instance;
 
         startButton.SetActive(false);
 
@@ -50,6 +67,7 @@ public class WaveSpawner : MonoBehaviour
         {
 
             wave++;
+            shop.balance += wave * 6;
             StartCoroutine(spawnWave());
             countDown = TimeBetweenWaves;
 
@@ -83,7 +101,30 @@ public class WaveSpawner : MonoBehaviour
     void spawnEnemy()
     {
 
-        Instantiate(enemyPrefab, SpawnPoint.position, SpawnPoint.rotation);
+        float whichEnemy = Random.value;
+
+        int whichSpawnPoint = Random.Range(0, spawnpoints.Length - 1);
+
+        SpawnPoint = spawnpoints[whichSpawnPoint].transform;
+
+        if (Random.value <= 0.11)
+        {
+
+            Instantiate(bigEnemy, SpawnPoint.transform.position, gameObject.transform.rotation);
+
+        }
+        if (Random.value <= 0.10)
+        {
+
+            Instantiate(explosiveEnemy, SpawnPoint.transform.position, gameObject.transform.rotation);
+
+        }
+        if (Random.value <= 0.79)
+        {
+
+            Instantiate(normalEnemy, SpawnPoint.transform.position, gameObject.transform.rotation);
+
+        }
 
     }
 
@@ -91,7 +132,7 @@ public class WaveSpawner : MonoBehaviour
     {
 
         isstarted = true;
-        startButton.SetActive(false);
+        Destroy(startButton);
 
     }
 

@@ -16,9 +16,11 @@ public class BuildManager : MonoBehaviour
 
     }
 
-    public GameObject standardTurretPrefab;
-    public GameObject superTurretPrefab;
+    public GameObject pandaPrefab;
+    public GameObject medicPrefab;
     public GameObject robotPrefab;
+    public GameObject farmPrefab;
+    public GameObject knightPrefab;
 
     public TurretBlueprint TurretToBuild;
 
@@ -27,15 +29,15 @@ public class BuildManager : MonoBehaviour
     public void BuildTurretOn(Node node)
     {
 
-        GameObject turretOb = (GameObject)Instantiate(TurretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
+        GameObject turretOb = (GameObject)Instantiate(TurretToBuild.prefab, node.GetBuildPosition(), TurretToBuild.prefab.transform.rotation);
         created = true;
 
     }
 
-    public void SelectTurretToBuild(TurretBlueprint turret)
+    public void SelectTowerToBuild(TurretBlueprint tower)
     {
 
-        TurretToBuild.prefab = turret.prefab;
+        TurretToBuild.prefab = tower.prefab;
 
     }
 

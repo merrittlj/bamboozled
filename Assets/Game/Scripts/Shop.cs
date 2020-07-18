@@ -12,19 +12,22 @@ public class Shop : MonoBehaviour
     public int balance;
 
     [Header("Prefabs")]
-    public TextMeshProUGUI MoneyText;
     public TurretBlueprint turretPlaceHolder;
 
     [Header("TurretBlueprints")]
-    public TurretBlueprint turret;
-    public TurretBlueprint superturret;
+    public TurretBlueprint panda;
+    public TurretBlueprint medic;
     public TurretBlueprint robot;
+    public TurretBlueprint farm;
+    public TurretBlueprint knight;
 
     private string turretSelected;
 
     public static Shop instance;
 
     Node node;
+
+    NumberManager numman;
 
     private bool waited;
 
@@ -39,6 +42,7 @@ public class Shop : MonoBehaviour
     {
         node = Node.instance;
         buildManager = BuildManager.instance;
+        numman = NumberManager.instance;
     }
 
     private void Update()
@@ -47,7 +51,7 @@ public class Shop : MonoBehaviour
         if (buildManager.created == true)
         {
 
-            buildManager.SelectTurretToBuild(turretPlaceHolder);
+            buildManager.SelectTowerToBuild(turretPlaceHolder);
             StartCoroutine(waitabit());
             if (waited == true)
             {
@@ -58,74 +62,16 @@ public class Shop : MonoBehaviour
 
         }
 
-        MoneyText.text = balance.ToString();
-
-
-        if (balance <= 0)
-        {
-
-            Debug.Log("No money left!");
-
-        }
-
     }
 
-    public void SelectTurret()
+    public void SelectTurb(TurretBlueprint turb)
     {
 
-            if (balance >= turret.cost)
-            {
-
-                balance -= turret.cost;
-                Debug.Log("Turret Selected");
-                buildManager.SelectTurretToBuild(turret);
-                turretSelected = "turret";
-                return;
-
-            }
-
-            else
-            {
-
-                Debug.Log("Not enouth money!");
-                return;
-
-            }
-
-    }
-    public void SelectSuperturret()
-    {
-
-        if (balance >= superturret.cost)
+        if (balance >= turb.cost)
         {
 
-                balance -= superturret.cost;
-                Debug.Log("Super turret Selected");
-                buildManager.SelectTurretToBuild(superturret);
-                turretSelected = "superturret";
-                return;
-
-        }
-
-        else
-        {
-
-            Debug.Log("Not enouth money!");
-            return;
-
-        }
-
-    }
-    public void SelectRobot()
-    {
-
-        if (balance >= robot.cost)
-        {
-
-            balance -= robot.cost;
-            Debug.Log("Robot Selected");
-            buildManager.SelectTurretToBuild(robot);
-            turretSelected = "robot";
+            balance -= turb.cost;
+            buildManager.SelectTowerToBuild(turb);
             return;
 
         }
@@ -145,6 +91,51 @@ public class Shop : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
         waited = true;
+
+    }
+
+    public void SelectTower(string WhatTower)
+    {
+
+        if (numman.isdone == true)
+        {
+
+            if (WhatTower == "Panda")
+            {
+
+                SelectTurb(panda);
+
+            }
+
+            if (WhatTower == "Medic")
+            {
+
+                SelectTurb(medic);
+
+            }
+
+            if (WhatTower == "Robot")
+            {
+
+                SelectTurb(robot);
+
+            }
+
+            if (WhatTower == "Farm")
+            {
+
+                SelectTurb(farm);
+
+            }
+
+            if (WhatTower == "Knight")
+            {
+
+                SelectTurb(knight);
+
+            }
+
+        }
 
     }
 
